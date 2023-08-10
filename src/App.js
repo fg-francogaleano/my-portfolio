@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import NavBar from './NavBar/NavBar';
 import TypingAnimation from './TypingAnimation/TypingAnimation';
@@ -5,12 +6,41 @@ import TypingAnimation from './TypingAnimation/TypingAnimation';
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1690902266/varietales/notebook_-_197_Original_ohqqim.mp4"
 
 function App() {
-  
+  // MODO DARK
+  const[ theme, setTheme ] = useState(localStorage.getItem('color-theme') || "light")
+console.log(theme);
+  useEffect(()=>{
+     // if set via local storage previously
+    if (localStorage.getItem('color-theme')) {
+      if (localStorage.getItem('color-theme') === 'light') {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+      } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+      }
+
+  // if NOT set via local storage previously
+    } else {
+      if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+      } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+      }
+  }
+  },[theme])
+
+  const handlerTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+  // FIN DE MODO DARK
   return (
     <>
       <section id='Inicio' className="w-full min-h-screen relative" >
         <div className='relative z-10'>
-          <NavBar/>
+          <NavBar handlerTheme={handlerTheme} />
         </div>
         <div className='flex flex-col justify-center items-center w-full min-h-screen relative z-10'>
           <TypingAnimation/>
