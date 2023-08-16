@@ -1,11 +1,16 @@
 import React from 'react'
 import Typed from 'react-typed';
 
-function TypingAnimation() {
-    const phrases = ["Franco Galeano", "Desarrollador Web",];
+function TypingAnimation({ language }) {
+    const phrases = ["Franco Galeano", "Developer Full Stack"];
+    const en = 'I am';
+    const es = 'Soy'
+
   return (
     <>
-        <h1 className='text-6xl font-black tracking-widest font-condensed'>Soy</h1>
+        <h1 className='text-6xl font-black tracking-widest font-condensed'>
+          {language === 'En'? en : es }
+        </h1>
         <h1 className='text-6xl font-black tracking-widest font-condensed'>
             <Typed
             strings={phrases}

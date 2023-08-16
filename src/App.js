@@ -6,57 +6,53 @@ import TypingAnimation from './TypingAnimation/TypingAnimation';
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1690902266/varietales/notebook_-_197_Original_ohqqim.mp4"
 
 function App() {
-  // MODO DARK
-  const[ theme, setTheme ] = useState(localStorage.getItem('color-theme') || "light")
-console.log(theme);
+
+  /* IDIOMA */
+  const[ language, setlanguage ] = useState(localStorage.getItem('language') || 'Es');
+  // console.log('ESTADO LOCAL', language, typeof language, 'LOCALSTORANGE',localStorage.getItem('language'), typeof localStorage.getItem('language'));
   useEffect(()=>{
-     // if set via local storage previously
-    if (localStorage.getItem('color-theme')) {
-      if (localStorage.getItem('color-theme') === 'light') {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('color-theme', 'dark');
+    console.log('ESTADO LOCAL',typeof language,language);
+    /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
+    if (localStorage.getItem('language') !== null) {
+      // console.log('SI ESTÁ SETEADO EN EL LOCALSTORANGE', localStorage.getItem('language'), typeof JSON.parse(localStorage.getItem('language')));
+      if (localStorage.getItem('language') === 'Es') {
+          localStorage.setItem('language', 'En');
       } else {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('color-theme', 'light');
+          localStorage.setItem('language', 'Es');
       }
 
-  // if NOT set via local storage previously
-    } else {
-      if (document.documentElement.classList.contains('dark')) {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('color-theme', 'light');
+    /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
+  } else {
+    console.log('SI NO ESTÁ SETEADO EN EL LOCALSTORANGE');
+      if (language === 'Es') {
+        localStorage.setItem('language', 'En');
       } else {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('color-theme', 'dark');
+        localStorage.setItem('language', 'Es');
       }
   }
-  },[theme])
+  },[language])
 
-  const handlerTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-  // FIN DE MODO DARK
   return (
     <>
-      <section id='Inicio' className="w-full min-h-screen relative" >
+      <section id={language === 'En' ? 'Home' : 'Inicio'} className="w-full min-h-screen relative" >
         <div className='relative z-10'>
-          <NavBar handlerTheme={handlerTheme} />
+          <NavBar language={language} setlanguage={setlanguage}/>
         </div>
         <div className='flex flex-col justify-center items-center w-full min-h-screen relative z-10'>
-          <TypingAnimation/>
+          <TypingAnimation language={language}/>
         </div>
         <video autoPlay loop muted className='w-full h-full absolute top-0 left-0 object-cover'>
           <source src={UrlVideo} type='video/mp4'/>
         </video> 
         <div className='w-full h-full absolute top-0 left-0 bg-stone-900 opacity-50 mix-blend-overlay' ></div>
       </section>
-      <section id='Acerca de mi' className="w-full min-h-screen relative">
+      <section id={language === 'En' ? 'About me' : 'Acerca de mi'} className="w-full min-h-screen relative">
         <p>Acerca de mi</p>
       </section>
-      <section id='Proyectos' className="w-full min-h-screen relative">
+      <section id={language === 'En' ? 'Projects' : 'Proyectos'} className="w-full min-h-screen relative">
         <p>Proyectos</p>
       </section>
-      <section id='Contactame' className="w-full min-h-screen relative">
+      <section id={language === 'En' ? 'Contact' : 'Contactame'} className="w-full min-h-screen relative">
         <p>Contactame</p>
       </section>
     </>
