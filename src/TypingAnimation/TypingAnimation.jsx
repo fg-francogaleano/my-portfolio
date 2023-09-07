@@ -2,16 +2,17 @@ import React from 'react'
 import Typed from 'react-typed';
 
 function TypingAnimation({ language }) {
-    const phrases = ["Franco Galeano", "Developer Full Stack"];
+    const phrases = ["Franco Galeano", "Full Stack"];
     const en = 'I am';
     const es = 'Soy'
 
   return (
     <>
-        <h1 className='text-6xl font-black tracking-widest font-condensed'>
+      <div className='flex flex-col w-[90%] m-auto'>
+        <h1 className='text-6xl font-black tracking-widest font-condensed py-2 text-white'>
           {language === 'En'? en : es }
         </h1>
-        <h1 className='text-6xl font-black tracking-widest font-condensed'>
+        <h1 className='text-6xl font-black tracking-widest font-condensed py-2 text-white'>
             <Typed
             strings={phrases}
             typeSpeed={70}
@@ -19,6 +20,7 @@ function TypingAnimation({ language }) {
             loop
             />
         </h1>
+      </div>
     </>
   )
 }
