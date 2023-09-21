@@ -3,7 +3,6 @@ import {projects} from './data.js'
 
 function Projects({ language }) {
   const title = language === 'Es' ? 'Mis Proyectos' : 'My Projects';
-  console.log(projects);
   return (
     <>
       <div className='w-full m-auto'>

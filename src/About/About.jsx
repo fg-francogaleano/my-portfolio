@@ -1,6 +1,8 @@
 import React from 'react'
+import Button from '@mui/material/Button';
 
-function About({ language }) {
+function About({ language, scrollToSection }) {
+  const contact = language === 'Es' ? 'Contactame' : 'Contact'
   const title = language === 'Es' ? 'Acerca de mi' : 'About me';
   const img = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1692823992/varietales/b7c5ca3b-46b6-44e0-8f42-76573ecccb00_j5putc.png";
   const text = language === 'Es' 
@@ -9,17 +11,14 @@ function About({ language }) {
   return (
     <>
       <div className=' md:m-auto md:mt-1'>
-      <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
-                  {title}
-                </h2>
+        <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
+          {title}
+        </h2>
         <div className='md:flex md:w-full md:h-full md:justify-evenly'>
           {/* CONTENT TEXT */}
           <div className=''>     
             <div className='w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center'>
               <div >
-                {/* <h2 className='font-condensed font-black tracking-widest py-2 visible text-xl dark:text-white'>
-                  {title}
-                </h2> */}
                 <p className='font-condensed tracking-widest py-2 text-base lg:text-xl dark:text-white'>
                   {text}
                 </p>  
@@ -29,13 +28,25 @@ function About({ language }) {
 
           {/* CONTENT IMAGE */}
           <div className='md:self-center'>
-            <div className='w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] '>
+            <div className='w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px]'>
               <img 
                 src={img} 
                 alt="Franco Galeano" 
               />
             </div>
           </div>
+        </div>
+        <div className='text-center'>
+          <Button
+            onClick={() => {
+              setTimeout(()=>{
+                scrollToSection(contact)
+              }, 100);
+            }} 
+            variant="outlined"
+          >
+            {contact}
+          </Button>
         </div>
       </div>
     </>

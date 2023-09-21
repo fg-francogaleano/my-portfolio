@@ -4,10 +4,24 @@ import NavBar from './NavBar/NavBar';
 import TypingAnimation from './TypingAnimation/TypingAnimation';
 import About from './About/About';
 import Projects from './Proyects/Projects';
+import Contact from './Contact/Contact';
 
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4"
 
 function App() {
+    /* SCROLL SECTION */
+    const scrollToSection = (sectionId) => {
+      const section = document.getElementById(sectionId);
+       if (section) {
+        setTimeout(()=>{
+          section.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start' 
+          });
+        }, 200)
+        }
+      };
+    /* END SCROLL SECTION */
 
   /* LANGUAGE */
   const[ language, setlanguage ] = useState(localStorage.getItem('language') || 'Es');
@@ -36,7 +50,7 @@ function App() {
         id={language === 'En' ? 'Home' : 'Inicio'} 
         className="w-full min-h-screen relative" >
         <div className='fixed w-full z-50'>
-        <NavBar language={language} setlanguage={setlanguage}/>
+        <NavBar language={language} setlanguage={setlanguage} scrollToSection={scrollToSection} />
         </div>
         <div className='flex justify-start items-center w-full min-h-screen relative z-10'>
           <TypingAnimation language={language}/>
@@ -46,13 +60,13 @@ function App() {
         </video> 
         <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div>
         <div className='w-full h-full flex justify-center items-end absolute bottom-0 left-0'>
-          <i class="bi bi-chevron-compact-down px-10 z-50 bg-white"></i>
+          <i className="bi bi-chevron-compact-down px-10 z-50 bg-white"></i>
         </div>
       </section>
       <section 
         id={language === 'En' ? 'About me' : 'Acerca de mi'} 
         className="w-full relative p-6">
-        <About language={language} setlanguage={setlanguage} />
+        <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
       </section>
       <section 
         id={language === 'En' ? 'Projects' : 'Proyectos'} 
@@ -62,7 +76,7 @@ function App() {
       <section 
         id={language === 'En' ? 'Contact' : 'Contactame'} 
         className="w-full min-h-screen relative p-6 border border-red">
-        <p>Contactame</p>
+          <Contact language={language}/>
       </section>
     </div>
   

@@ -5,4 +5,3 @@ const imgWineCellar = 'https://res.cloudinary.com/dfmkjxjsf/image/upload/v169400
 const urlWineCellar = 'https://ecommerce-khaki-nine.vercel.app/';
 const descriptionWineCellar = 'Desarrollo de una tienda en línea especializada en vinos, en un entorno de trabajo en equipo. Utilizamos tecnologías como React para construir una interfaz de usuario atractiva y fácil de usar, Redux para administrar el estado de la aplicación, y Node.js con PostgreSQL para la gestión de datos. Este proyecto grupal nos permitió colaborar en el diseño y la implementación, brindando una experiencia completa para los amantes del vino.';
 export const projects = [{name:'Pokémon', image:imgPokemon, url:urlPokemon, description:descriptionPokemon}, {name:'The Wine Cellar', image:imgWineCellar, url:urlWineCellar, description:descriptionWineCellar},];
- console.log(projects);

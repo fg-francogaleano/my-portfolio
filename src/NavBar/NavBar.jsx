@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-function NavBar({ language, setlanguage}) {
+function NavBar({ language, setlanguage, scrollToSection}) {
   /* SCROLL STYLES NAV */
     const [scroll, setScroll] = useState(false);
     // const [blurred, setBlurred] = useState(false);
-
-    console.log(scroll);
   
     const handleScroll = () => {
       if (window.scrollY > 160) {
@@ -24,12 +22,12 @@ function NavBar({ language, setlanguage}) {
   /* END SCROLL STYLES NAV */
 
   /* SCROLL SECTION */
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      }
-    };
+  // const scrollToSection = (sectionId) => {
+  //   const section = document.getElementById(sectionId);
+  //    if (section) {
+  //     section.scrollIntoView({ behavior: 'smooth' });
+  //     }
+  //   };
   /* END SCROLL SECTION */
 
   /* MENU BURGER */
@@ -48,7 +46,6 @@ function NavBar({ language, setlanguage}) {
   useEffect(()=>{
         /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
         if (localStorage.getItem('color-theme')) {
-          console.log('ESTÁ SETEADO EN LS', theme);
           if (localStorage.getItem('color-theme') === 'light') {
               document.documentElement.classList.add('dark');
               localStorage.setItem('color-theme', 'dark');
@@ -99,46 +96,51 @@ function NavBar({ language, setlanguage}) {
                 </li>
               ))}
             </ul>
-
-            {/* THEME DARK */}
-            <button 
-              onClick={() => {
-                setTimeout(() => {
-                  handlerTheme()
-                },500);
-                setIsOpen(false)}}
-              className='px-3 flex'
-            >
-              {theme === 'light' 
-              ? <i className="bi bi-moon-stars-fill"></i>
-              : <i className="bi bi-brightness-high-fill"></i>}
-              {theme === 'light' 
-              ? <i class="bi bi-toggle2-off px-1 text-[18px]"></i>
-              : <i class="bi bi-toggle2-on px-1 text-[18px]"></i>}
-            </button>
-            
-            {/* LANGUAGE */}
-            <button 
-              onClick={() => {
-                setTimeout(() => {
-                  setlanguage(language === 'Es' ? 'En' : 'Es');
-                }, 500)
-                setIsOpen(false)}}
-                className='px-3 flex'
-            >
-              {language === 'En' 
-              ? (<>
-                  <img src={iconSpain} alt="spain" className='px-1'/> 
-                  <span>Es</span>
-                </>) 
-              : (
-                <>
-                  <img src={iconUsa} alt="usa" className='px-1'/>
-                  <span>En</span>
-                </>
-              )}
-              <i className="bi bi-caret-down-fill text-[8px] self-end"></i>
-            </button>
+            <div className='flex'>
+              {/* THEME DARK */}
+              <div className='px-2 flex'>
+                {theme === 'dark' 
+                  ? <i className="bi bi-moon-stars-fill"></i>
+                  : <i className="bi bi-brightness-high-fill"></i>}
+                <button 
+                  onClick={() => {
+                    setTimeout(() => {
+                      handlerTheme()
+                    },500);
+                    setIsOpen(false)}}
+                  className='px-1'
+                >
+                  {theme === 'light' 
+                  ? <i className="bi bi-toggle2-off px- text-[18px]"></i>
+                  : <i className="bi bi-toggle2-on px- text-[18px]"></i>}
+                </button>
+              </div>
+              
+              {/* LANGUAGE */}
+              <div className='px-2 flex'>
+                {language === 'En' 
+                  ? (<>
+                      <img src={iconSpain} alt="spain" className='px-1'/> 
+                      <span>Es</span>
+                    </>) 
+                  : (
+                    <>
+                      <img src={iconUsa} alt="usa" className='px-1'/>
+                      <span>En</span>
+                    </>
+                  )}
+                <button 
+                  onClick={() => {
+                    setTimeout(() => {
+                      setlanguage(language === 'Es' ? 'En' : 'Es');
+                    }, 500)
+                    setIsOpen(false)}}
+                    className='px- flex'
+                >
+                  <i className="bi bi-caret-down-fill text-[8px] self-end"></i>
+                </button>
+              </div>
+            </div>      
         </div>
      
         {/* MENU BURGER */}
