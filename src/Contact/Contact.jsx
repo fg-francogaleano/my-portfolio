@@ -2,7 +2,8 @@ import { Box, Button, TextField, } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
 import { Formik } from 'formik';
 import validations from './validations';
-import React from 'react'
+import emailjs from '@emailjs/browser';
+import React, { useRef } from 'react';
 
 function Contact({ language }) {
   const contact = language === 'Es' ? 'Contactame' : 'Contact';
@@ -20,8 +21,18 @@ function Contact({ language }) {
     correo: '',
     mensaje: ''
   }
+  
+  const refForm = useRef();
+
   const handlerSubmit = (values) => {
-    console.log(values);
+    console.log(refForm.current);
+    const serviceId = 'service_rn3w3g9';
+    const templateId = 'template_5vwro9e';
+    const apiKey = 'pxGg36sd8xaftbeW3';
+
+    emailjs.sendForm(serviceId, templateId, refForm.current, apiKey)
+    .then(res => console.log(res.text))
+    .catch(err => console.log(err))
   };
 
   return (
@@ -54,6 +65,7 @@ function Contact({ language }) {
                 <div className='border border-green-700 rounded-lg'>
                   <div className='w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-8'>
                     <Box
+                      ref={refForm}
                       component="form"
                       onSubmit={handleSubmit}
                       sx={{ flexDirection: 'column' }}
@@ -63,13 +75,14 @@ function Contact({ language }) {
                         type='text'
                         id='name' 
                         name='name'
-                        value={values.name}  
+                        value={values.name}
+                        autoComplete='off'  
                         label={name}
                         helperText={touched.name && (language === 'Es' ? errors.nombre : errors.name)}
                         error={touched.name && errors.name}
                         onChange={handleChange}
                         onBlur={handleBlur} 
-                        variant="standard"
+                        variant="outlined"
                         fullWidth
                       />
                       
@@ -84,7 +97,7 @@ function Contact({ language }) {
                         error={touched.email && errors.email}
                         onChange={handleChange}
                         onBlur={handleBlur} 
-                        variant="standard"
+                        variant="filled"
                         fullWidth
                       />
 
