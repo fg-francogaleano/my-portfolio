@@ -75,7 +75,7 @@ function App() {
       </section>
       <section 
         id={language === 'En' ? 'Contact' : 'Contactame'} 
-        className="w-full min-h-screen relative p-6 border border-red">
+        className="w-full min-h-screen relative p-6 flex justify-center items-center">
           <Contact language={language}/>
       </section>
     </div>
