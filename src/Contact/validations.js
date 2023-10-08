@@ -41,6 +41,24 @@ export default function validations (values) {
       errors.correo = 'No debe ser un espacio en blanco'; 
     };
 
+     /* SUBJECT */
+     if (!values.subject) {
+      errors.subject = 'Enter a subject';
+      errors.asunto = 'Ingrese un asunto';
+    }; 
+    if (values.subject && blankSpace.test(values.subject)) {
+      errors.subject = 'Should not start with a space';
+      errors.asunto = 'No debe empezar con un espacio';
+    };
+    if (values.subject && values.name.length > 30) {
+      errors.subject = 'Should not be more than 30 characters';
+      errors.asunto = 'No debe tener más de 30 carácteres';
+    };
+    if (values.subject &&  values.subject.length < 3) {
+      errors.subject = 'It must not be less than 3 characters';
+      errors.asunto = 'No debe tener menos de 3 carácteres';
+    };
+
     /* MESSAGE */
     if (!values.message) {
       errors.message = 'Enter a message';

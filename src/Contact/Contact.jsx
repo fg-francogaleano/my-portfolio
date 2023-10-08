@@ -17,6 +17,7 @@ function Contact({ language }) {
   const contact = language === 'Es' ? 'Contáctame' : 'Contact me';
   const name = language === 'Es' ? 'Nombre' : 'Name';
   const email = language === 'Es' ? 'Correo electrónico' : 'Email';
+  const subject = language === 'Es' ? 'Asunto' : 'Subject';
   const message = language === 'Es' ? 'Mesaje' : 'Message';
   const send = language === 'Es' ? 'Enviar' : 'Submit';
   const text = language === 'Es' ? '¡Trabajemos en equipo!' : 'We work as a team!';
@@ -28,9 +29,11 @@ function Contact({ language }) {
   const initialValues = {
     name: '',
     email: '',
+    subject: '',
     message: '',
     nombre: '',
     correo: '',
+    asunto: '',
     mensaje: ''
   }
   
@@ -78,24 +81,27 @@ function Contact({ language }) {
   /* LOADING */
   const [loading, setLoading] = useState(false);
 
-  const handleLoading = () => {
-    setTimeout(()=> {
-      setLoading(true)
-    },300)
+  const handleLoading = (touched) => {
+    console.log(Object.keys(touched).length);
+    if (Object.keys(touched).length !== 0) {
+      setTimeout(()=> {
+        setLoading(true)
+      },300)
+    }
   }
   /* END LOADING */
 
   return (
     <>
-      <div className='w-full'>
-        <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-20 md:my-10'>
+      <div className='w-full border border-red-500'>
+        <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
           {contact}
         </h2>
         <div className='md:flex md:w-full md:h-full md:justify-evenly'>
           {/* CONTENT TEXT */}
           <div className='hidden md:block'>
             <div className='w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center'>
-              <p className='font-condensed font-black tracking-widest text-4xl dark:text-white text-center py-9'>
+              <p className='font-condensed font-black tracking-widest text-4xl dark:text-white text-center py-2'>
                 {text}
               </p>
             </div>
@@ -153,6 +159,23 @@ function Contact({ language }) {
                         margin='normal'
                       />
 
+                      {/* SUBJECT */}
+                      <TextField
+                        type='text'
+                        id='subject' 
+                        name='subject'
+                        value={values.subject} 
+                        label={subject}
+                        helperText={touched.subject && (language === 'Es' ? errors.asunto : errors.subject)}
+                        error={touched.subject && errors.subject  }
+                        onChange={handleChange}
+                        onBlur={handleBlur} 
+                        variant="standard"
+                        required
+                        fullWidth
+                        margin='normal'
+                      />
+
                       {/* MESSAGE */}
                       <TextField
                         type='text'
@@ -177,7 +200,7 @@ function Contact({ language }) {
                         type='submit'
                         variant="outlined"
                         loading={loading}
-                        onClick={handleLoading}
+                        onClick={() => handleLoading(touched)}
                         fullWidth
                         style={{ marginTop: '20px' }}
                       >
@@ -217,6 +240,7 @@ function Contact({ language }) {
                       </div>
                     </Box> 
                   </div>
+                  
                   <Stack spacing={2} sx={{ width: '100%' }}>
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                       <Alert onClose={handleClose} severity={success ? 'success': 'error'} sx={{ width: '100%' }}>

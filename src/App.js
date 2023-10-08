@@ -5,6 +5,7 @@ import TypingAnimation from './TypingAnimation/TypingAnimation';
 import About from './About/About';
 import Projects from './Proyects/Projects';
 import Contact from './Contact/Contact';
+import SliderSkrill from './Slider/SliderSrill';
 
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4"
 
@@ -48,7 +49,7 @@ function App() {
     <div className='bg-white dark:bg-slate-800'>
       <section 
         id={language === 'En' ? 'Home' : 'Inicio'} 
-        className="w-full min-h-screen relative" >
+        className="w-full min-h-screen relative border border-red" >
         <div className='fixed w-full z-50'>
         <NavBar language={language} setlanguage={setlanguage} scrollToSection={scrollToSection} />
         </div>
@@ -65,17 +66,22 @@ function App() {
       </section>
       <section 
         id={language === 'En' ? 'About me' : 'Acerca de mi'} 
-        className="w-full relative p-6">
-        <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
+        className="w-full min-h-screen relative p-6  border border-red">
+          <div className='flex items-center'>
+            <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
+          </div>
+          <div>
+            <SliderSkrill />
+          </div>
       </section>
       <section 
         id={language === 'En' ? 'Projects' : 'Proyectos'} 
-        className="w-full min-h-screen relative p-6">
+        className="w-full min-h-screen relative p-6 flex items-center border border-red">
         <Projects language={language} setlanguage={setlanguage}/>
       </section>
       <section 
         id={language === 'En' ? 'Contact' : 'Contactame'} 
-        className="w-full min-h-screen relative p-6 flex justify-center items-center">
+        className="w-full min-h-screen relative p-6 flex items-center border border-red">
           <Contact language={language}/>
       </section>
     </div>
