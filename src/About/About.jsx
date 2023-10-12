@@ -1,5 +1,7 @@
 import React from 'react'
 import Button from '@mui/material/Button';
+import SliderSkrill from '../Slider/SliderSrill';
+import WhatsappButton from '../WhatsappButton/WhatsappButton';
 
 function About({ language, scrollToSection }) {
   const contact = language === 'Es' ? 'Contactame' : 'Contact'
@@ -10,7 +12,7 @@ function About({ language, scrollToSection }) {
   : 'I have +10 years of experience in the field of building construction. Leading and supervising work groups has allowed me to develop management, coordination and decision-making skills in a dynamic environment.Currently, my goal is to consolidate myself in a position where I can add value, as an essential member of a team, addressing large-scale challenges. I am willing to bring the teamwork skills I have cultivated throughout my career and training as a developer.'
   return (
     <>
-      <div className='w-full md:mt-1 border border-red-500'>
+      <div className='w-full md:mt-1 border border-red-500 self-center'>
         <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
           {title}
         </h2>
@@ -21,7 +23,57 @@ function About({ language, scrollToSection }) {
               <div >
                 <p className='font-condensed tracking-widest py-2 text-base lg:text-xl dark:text-white'>
                   {text}
-                </p>  
+                </p>
+                {/* CONTACT */}
+                <div className='text-center mt-5 hidden md:block'>
+                  {/* BOTTON CONTACT */}
+                  <div className='w-full'>
+                    <Button
+                      onClick={() => {
+                        setTimeout(()=>{
+                          scrollToSection(contact)
+                        }, 100);
+                      }} 
+                      variant="outlined"
+                      fullWidth
+                    >
+                      {contact}
+                    </Button>
+                  </div>
+
+                  {/* SOCIAL MEDIA */}
+                  <div className='w-full flex justify-start py-2'>
+                    {/* LINKEDIN */}
+                    <a 
+                      href="https://www.linkedin.com/in/fran-galeano/" 
+                      rel="noopener noreferrer" 
+                      target="_blank"
+                       className='mx-2' 
+                    >
+                        <i className="bi bi-linkedin text-xl dark:text-white"></i>
+                    </a>
+                    {/* INSTAGRAM */}
+                    <a 
+                      href="https://www.linkedin.com/in/fran-galeano/" 
+                      rel="noopener noreferrer" 
+                      target="_blank"
+                      className='mx-2'
+                    >
+                      <i className="bi bi-instagram text-xl dark:text-white"></i>
+                    </a>
+                    {/* WHATSAPP */}
+                    <WhatsappButton />
+                    {/* GITHUB */}
+                    <a 
+                      href="https://github.com/fg-francogaleano" 
+                      rel="noopener noreferrer" 
+                      target="_blank"
+                      className='mx-2'
+                    >
+                      <i className="bi bi-github text-xl dark:text-white"></i>
+                    </a>
+                  </div>
+                </div>  
               </div>
             </div>
           </div>
@@ -34,19 +86,61 @@ function About({ language, scrollToSection }) {
                 alt="Franco Galeano" 
               />
             </div>
+            {/* CONTACT */}
+            <div className='text-center mt-5 block md:hidden'>
+              {/* BOTTON CONTACT */}
+              <div className='max-w-[500px] m-auto'>
+                <Button
+                  onClick={() => {
+                    setTimeout(()=>{
+                        scrollToSection(contact)
+                      }, 100);
+                    }} 
+                    variant="outlined"
+                  fullWidth  
+                >
+                  {contact}
+                </Button>
+              </div>
+
+              {/* SOCIAL MEDIA */}
+              <div className='max-w-[500px] m-auto flex justify-start mt-2'>
+                {/* LINKEDIN */}
+                <a 
+                  href="https://www.linkedin.com/in/fran-galeano/" 
+                  rel="noopener noreferrer" 
+                  target="_blank"
+                  className='mx-2' 
+                >
+                  <i className="bi bi-linkedin text-xl  dark:text-white"></i>
+                </a>
+                {/* INSTAGRAM */}
+                <a 
+                  href="https://www.linkedin.com/in/fran-galeano/" 
+                  rel="noopener noreferrer" 
+                  target="_blank"
+                  className='mx-2'                
+                >
+                  <i className="bi bi-instagram text-xl dark:text-white"></i>
+                </a>
+                {/* WHATSAPP */}
+                <WhatsappButton />
+                {/* GITHUB */}
+                <a 
+                  href="https://github.com/fg-francogaleano" 
+                  rel="noopener noreferrer" 
+                  target="_blank"
+                  className='mx-2'
+                >
+                  <i className="bi bi-github text-xl dark:text-white"></i>
+                </a>
+              </div>
+            </div>            
           </div>
         </div>
-        <div className='text-center'>
-          <Button
-            onClick={() => {
-              setTimeout(()=>{
-                scrollToSection(contact)
-              }, 100);
-            }} 
-            variant="outlined"
-          >
-            {contact}
-          </Button>
+        {/* SLIDER */}
+        <div className='w-min-full md:w-[75%] m-auto py-8'>
+          <SliderSkrill />
         </div>
       </div>
     </>

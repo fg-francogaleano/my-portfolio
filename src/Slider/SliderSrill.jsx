@@ -7,20 +7,18 @@ import { data } from './data.js'
 function SliderSkrill() {
   const settings = {
     dots: false,
+    arrows:false,
     infinite: true,
-    speed: 2000,
-    slidesToShow: 6, // Cambia este valor según la cantidad de elementos que desees mostrar a la vez
-    slidesToScroll: 2,
+    slidesToShow: 6,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 10, // Velocidad de reproducción automática en milisegundos
-    pauseOnHover: false, // Evita que el slider se pause cuando se coloca el mouse sobre él
-    centerMode: true, // Permite que el slider se centre en el elemento actual
-    centerPadding: '0', // Espacio adicional en los lados cuando centerMode está habilitado
-    arrows: false
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear"
   };
 
   return (
-    <div className='w-[70%] m-auto'>
+    <div className=''>
       <Slider {...settings}>
         {data.map((skrill, index) => (
           <div key={index}>

@@ -11,8 +11,9 @@ function WhatsappButton () {
       href={whatsappUrl} 
       rel="noopener noreferrer" 
       target="_blank"
+      className='mx-2'
     >
-      <i className="bi bi-whatsapp text-2xl px-5 dark:text-white"></i>
+      <i className="bi bi-whatsapp text-xl dark:text-white"></i>
     </a>
   );
 }

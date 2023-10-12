@@ -208,23 +208,25 @@ function Contact({ language }) {
                       </LoadingButton>
 
                       {/* SOCIAL MEDIA */}
-                      <div className='w-full flex justify-center mt-8'>
+                      <div className='w-full flex justify-start mt-2'>
 
                         {/* LINKEDIN */}
                         <a 
                           href="https://www.linkedin.com/in/fran-galeano/" 
                           rel="noopener noreferrer" 
-                          target="_blank" 
+                          target="_blank"
+                          className='mx-2' 
                         >
-                            <i className="bi bi-linkedin text-2xl px-5 dark:text-white"></i>
+                            <i className="bi bi-linkedin text-xl dark:text-white"></i>
                         </a>
                        {/* INSTAGRAM */}
                         <a 
                           href="https://www.linkedin.com/in/fran-galeano/" 
                           rel="noopener noreferrer" 
                           target="_blank"
+                          className='mx-2'
                         >
-                          <i className="bi bi-instagram text-2xl px-5 dark:text-white"></i>
+                          <i className="bi bi-instagram text-xl dark:text-white"></i>
                         </a>
                        {/* WHATSAPP */}
                         <WhatsappButton />
@@ -233,8 +235,9 @@ function Contact({ language }) {
                           href="https://github.com/fg-francogaleano" 
                           rel="noopener noreferrer" 
                           target="_blank"
+                          className='mx-2'
                         >
-                          <i className="bi bi-github text-2xl px-5 dark:text-white"></i>
+                          <i className="bi bi-github text-xl dark:text-white"></i>
                         </a>
                         
                       </div>

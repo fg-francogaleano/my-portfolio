@@ -5,7 +5,6 @@ import TypingAnimation from './TypingAnimation/TypingAnimation';
 import About from './About/About';
 import Projects from './Proyects/Projects';
 import Contact from './Contact/Contact';
-import SliderSkrill from './Slider/SliderSrill';
 
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4"
 
@@ -60,19 +59,15 @@ function App() {
           <source src={UrlVideo} type='video/mp4'/>
         </video> 
         <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div>
-        <div className='w-full h-full flex justify-center items-end absolute bottom-0 left-0'>
-          <i className="bi bi-chevron-compact-down px-10 z-50 bg-white"></i>
+        <div className='w-full h-full flex justify-center items-end absolute bottom-0 left-0 border border-red-500'>
+          <i className="bi bi-chevron-compact-down text-6xl px-16 z-50 animate-bounce"></i>
         </div>
       </section>
       <section 
         id={language === 'En' ? 'About me' : 'Acerca de mi'} 
-        className="w-full min-h-screen relative p-6  border border-red">
-          <div className='flex items-center'>
-            <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
-          </div>
-          <div>
-            <SliderSkrill />
-          </div>
+        className="w-full min-h-screen relative p-6 flex items-center border border-red">  
+          <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
+
       </section>
       <section 
         id={language === 'En' ? 'Projects' : 'Proyectos'} 
