@@ -1,42 +1,53 @@
 import React, { useEffect, useState } from 'react'
 
-function NavBar({ language, setlanguage, scrollToSection}) {
+function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection}) {
   /* SCROLL STYLES NAV */
-    const [scroll, setScroll] = useState(false);
+    const [scroll, setScroll] = useState(true);
     // const [blurred, setBlurred] = useState(false);
   
-    const handleScroll = () => {
-      if (window.scrollY > 160) {
-        setScroll(true);
-      } else {
-        setScroll(false);
-      };
+    const getCurrentSection = () => {
+      const scrollY = window.scrollY;
+      let section = 'Inicio';
+  
+      buttons.forEach((s) => {
+        if (s.element && scrollY + 80 >= s.element.offsetTop) {
+          section = s.name;
+        }
+      });
+  
+      return section;
     };
    
     useEffect(() => {
+      const handleScroll = () => {
+        setCurrentSection(getCurrentSection());
+      };
+  
       window.addEventListener('scroll', handleScroll);
+  
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-    },[]);
+    }, []);
   /* END SCROLL STYLES NAV */
-
-  /* SCROLL SECTION */
-  // const scrollToSection = (sectionId) => {
-  //   const section = document.getElementById(sectionId);
-  //    if (section) {
-  //     section.scrollIntoView({ behavior: 'smooth' });
-  //     }
-  //   };
-  /* END SCROLL SECTION */
 
   /* MENU BURGER */
   const [ isOpen, setIsOpen ] = useState(false)
   /* END MENU BURGER */ 
 
   /* BUTTON NAV */
-  const buttonsEs = ['Inicio', 'Acerca de mi', 'Proyectos', 'Contactame'];
-  const buttonsEn = ['Home', 'About me', 'Projects', 'Contact'];
+  const buttonsEs = [
+    {name:'Inicio', element: document.getElementById('Inicio')}, 
+    {name: 'Acerca de mi', element: document.getElementById('Acerca de mi')}, 
+    {name: 'Proyectos', element: document.getElementById('Proyectos')}, 
+    {name: 'Contactame', element: document.getElementById('Contactame')}
+  ];
+  const buttonsEn = [
+    {name:'Home', element: document.getElementById('Home')}, 
+    {name:'About me', element: document.getElementById('About me')}, 
+    {name:'Projects', element: document.getElementById('Projects')}, 
+    {name:'Contact', element: document.getElementById('Contact')}
+  ];
   const buttons = language === 'En' ? buttonsEn : buttonsEs;
   /* END BUTTON NAV */
 
@@ -78,21 +89,25 @@ function NavBar({ language, setlanguage, scrollToSection}) {
 
   return (
     <>
-      <nav className={`md:bg-slate-100 md:bg-opacity-10 backdrop-blur-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${scroll? '' : 'hidden'} `}>
+      <nav className={`md:bg-white shadow-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${scroll? '' : 'hidden'} `}>
         
-      <div className={`p-7 h-[380px] w-full flex flex-col items-start justify-around text-dark dark:text-white md:flex-row md:w-full md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-slate-800' : 'invisible'}`}>
+        <div className={`p-7 h-[380px] w-full flex flex-col items-start justify-around text-dark dark:text-white md:flex-row md:w-full md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-slate-800' : 'invisible'}`}>
           {/* BUTTON NAV */}
-            <ul className='flex flex-col justify-around h-5/6 md:flex-row md:justify-center md:w-full'>
+            <ul className='flex flex-col justify-around h-5/6 md:flex-row md:justify-evenly md:w-full'>
               {buttons?.map((button, index) => (
                 <li
                   key={index}
                   onClick={() => {
-                    scrollToSection(button);
+                    scrollToSection(button.name);
                     setIsOpen(false)
                   }}
-                  className='md:px-5'
+                  className={`
+                  py-2 transition-transform duration-500 ease-in-out transform 
+                  ${currentSection === button.name 
+                    ? 'active: scale-110 border-b border-[#8BBAE8]' 
+                    : ''}`}
                 >
-                  <button>{button}</button>
+                  <button>{button.name}</button>
                 </li>
               ))}
             </ul>

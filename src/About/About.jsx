@@ -12,7 +12,7 @@ function About({ language, scrollToSection }) {
   : 'I have +10 years of experience in the field of building construction. Leading and supervising work groups has allowed me to develop management, coordination and decision-making skills in a dynamic environment.Currently, my goal is to consolidate myself in a position where I can add value, as an essential member of a team, addressing large-scale challenges. I am willing to bring the teamwork skills I have cultivated throughout my career and training as a developer.'
   return (
     <>
-      <div className='w-full md:mt-1 border border-red-500 self-center'>
+      <div className='w-full md:mt-1 self-center'>
         <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
           {title}
         </h2>

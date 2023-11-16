@@ -93,7 +93,7 @@ function Contact({ language }) {
 
   return (
     <>
-      <div className='w-full border border-red-500'>
+      <div className='w-full'>
         <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
           {contact}
         </h2>

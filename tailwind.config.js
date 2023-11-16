@@ -12,6 +12,11 @@ module.exports = {
       robotoMono : ['Roboto Mono', 'monospace'],
       condensed : ['Roboto Condensed', 'sans-serif'],
     },
+    transitionDuration: {
+      '3000': '3000ms',
+      '1000': '1000ms',
+      '2000': '2000ms',
+    }
   },
   plugins: [],
 }

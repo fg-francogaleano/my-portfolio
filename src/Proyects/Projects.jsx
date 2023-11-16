@@ -37,7 +37,7 @@ function Projects({ language }) {
   /* END SEE MORE */
   return (
     <>
-      <div className='w-full border border-red-500'>
+      <div className='w-full'>
         <h2 className='font-condensed font-black tracking-widest py-9 text-center visible text-3xl dark:text-white'>{title}</h2>
         <div className=''>
           {projectsRender.map((project, index) => (
