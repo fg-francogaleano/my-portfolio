@@ -10,25 +10,6 @@ import AnimationDown from './AnimationDown/AnimationDown';
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4"
 
 function App() {
-  /* SCROLL STYLES NAV */
-  const [currentSection, setCurrentSection] = useState('Home');
-  /* END SCROLL STYLES NAV */
-
-  /* SCROLL SECTION */
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-      if (section) {
-        setTimeout(()=>{
-          section.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start' 
-          });
-        }, 200);
-        setCurrentSection(sectionId);
-      };
-    };
-  /* END SCROLL SECTION */
-
   /* LANGUAGE */
   const[ language, setlanguage ] = useState(localStorage.getItem('language') || 'Es');
   useEffect(()=>{
@@ -49,6 +30,26 @@ function App() {
         }
     }
   },[language])
+
+   /* SCROLL STYLES NAV */
+   const initial = language === 'Es' ? 'Inicio' : 'Home'
+   const [currentSection, setCurrentSection] = useState(initial);
+   /* END SCROLL STYLES NAV */
+ 
+   /* SCROLL SECTION */
+   const scrollToSection = (sectionId) => {
+     const section = document.getElementById(sectionId);
+       if (section) {
+         setTimeout(()=>{
+           section.scrollIntoView({ 
+             behavior: 'smooth',
+             block: 'start' 
+           });
+         }, 200);
+         // setCurrentSection(sectionId);
+       };
+     };
+   /* END SCROLL SECTION */
 
   return (
     <div className='bg-white dark:bg-slate-800'>

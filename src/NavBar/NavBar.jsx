@@ -7,14 +7,17 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
   
     const getCurrentSection = () => {
       const scrollY = window.scrollY;
-      let section = 'Inicio';
+      let section = currentSection;
   
       buttons.forEach((s) => {
-        if (s.element && scrollY + 80 >= s.element.offsetTop) {
+        console.log(buttons);
+        if (scrollY + 80 >= s.position) {
+          console.log(scrollY + 80);
           section = s.name;
+          // console.log('1°','DENTRO DEL CONDICIONAL',s.name);
         }
       });
-  
+      console.log('RETORNA',section)
       return section;
     };
    
@@ -28,7 +31,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-    }, []);
+    }, [currentSection, getCurrentSection, setCurrentSection]);
   /* END SCROLL STYLES NAV */
 
   /* MENU BURGER */
@@ -37,16 +40,16 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
 
   /* BUTTON NAV */
   const buttonsEs = [
-    {name:'Inicio', element: document.getElementById('Inicio')}, 
-    {name: 'Acerca de mi', element: document.getElementById('Acerca de mi')}, 
-    {name: 'Proyectos', element: document.getElementById('Proyectos')}, 
-    {name: 'Contactame', element: document.getElementById('Contactame')}
+    {name:'Inicio', position: 0}, 
+    {name: 'Acerca de mi', position: 962}, 
+    {name: 'Proyectos', position: 1924}, 
+    {name: 'Contactame', position: 2886}
   ];
   const buttonsEn = [
-    {name:'Home', element: document.getElementById('Home')}, 
-    {name:'About me', element: document.getElementById('About me')}, 
-    {name:'Projects', element: document.getElementById('Projects')}, 
-    {name:'Contact', element: document.getElementById('Contact')}
+    {name:'Home', position: 0}, 
+    {name:'About me', position: 962}, 
+    {name:'Projects', position: 1924}, 
+    {name:'Contact', position: 2886}
   ];
   const buttons = language === 'En' ? buttonsEn : buttonsEs;
   /* END BUTTON NAV */
@@ -87,6 +90,15 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
   const iconSpain = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671842/varietales/92357_spain_icon_hbn8qn.png";
   const iconUsa = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671831/varietales/16039_united_states_of_america_us_usa_icon_natugz.png"
 
+  const scrollToTop = () => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth', // Utiliza un desplazamiento suave
+      });
+    }, 250);
+  };
+
   return (
     <>
       <nav className={`md:bg-white shadow-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${scroll? '' : 'hidden'} `}>
@@ -95,11 +107,13 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
           {/* BUTTON NAV */}
             <ul className='flex flex-col justify-around h-5/6 md:flex-row md:justify-evenly md:w-full'>
               {buttons?.map((button, index) => (
+                <>
+                {console.log(buttons)}
                 <li
                   key={index}
                   onClick={() => {
                     scrollToSection(button.name);
-                    setIsOpen(false)
+                    setIsOpen(false);
                   }}
                   className={`
                   py-2 transition-transform duration-500 ease-in-out transform 
@@ -109,6 +123,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                 >
                   <button>{button.name}</button>
                 </li>
+                </>
               ))}
             </ul>
             <div className='flex'>
@@ -149,7 +164,10 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                     setTimeout(() => {
                       setlanguage(language === 'Es' ? 'En' : 'Es');
                     }, 500)
-                    setIsOpen(false)}}
+                    setIsOpen(false)
+                    setCurrentSection(getCurrentSection());
+                    scrollToTop();
+                  }}
                     className='px- flex'
                 >
                   <i className="bi bi-caret-down-fill text-[8px] self-end"></i>
