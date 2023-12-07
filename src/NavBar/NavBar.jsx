@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-scroll';
+import './NavBar.css';
 
-function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection}) {
+function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection, isFirstSectionVisible}) {
   /* SCROLL STYLES NAV */
     const [scroll, setScroll] = useState(true);
     // const [blurred, setBlurred] = useState(false);
   
-    const getCurrentSection = () => {
-      const scrollY = window.scrollY;
-      let section = currentSection;
+    // const getCurrentSection = () => {
+    //   const scrollY = window.scrollY;
+    //   let section = currentSection;
   
-      buttons.forEach((s) => {
-        console.log(buttons);
-        if (scrollY + 80 >= s.position) {
-          console.log(scrollY + 80);
-          section = s.name;
-          // console.log('1°','DENTRO DEL CONDICIONAL',s.name);
-        }
-      });
-      console.log('RETORNA',section)
-      return section;
-    };
+    //   navigations.forEach((s) => {
+    //     console.log(navigations);
+    //     if (scrollY + 80 >= s.position) {
+    //       console.log(scrollY + 80);
+    //       section = s.name;
+    //       // console.log('1°','DENTRO DEL CONDICIONAL',s.name);
+    //     }
+    //   });
+    //   console.log('RETORNA',section)
+    //   return section;
+    // };
    
-    useEffect(() => {
-      const handleScroll = () => {
-        setCurrentSection(getCurrentSection());
-      };
+    // useEffect(() => {
+    //   const handleScroll = () => {
+    //     setCurrentSection(getCurrentSection());
+    //   };
   
-      window.addEventListener('scroll', handleScroll);
+    //   window.addEventListener('scroll', handleScroll);
   
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, [currentSection, getCurrentSection, setCurrentSection]);
+    //   return () => {
+    //     window.removeEventListener('scroll', handleScroll);
+    //   };
+    // }, [currentSection, getCurrentSection, setCurrentSection]);
   /* END SCROLL STYLES NAV */
 
   /* MENU BURGER */
@@ -39,19 +41,19 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
   /* END MENU BURGER */ 
 
   /* BUTTON NAV */
-  const buttonsEs = [
+  const navigationsEs = [
     {name:'Inicio', position: 0}, 
     {name: 'Acerca de mi', position: 962}, 
     {name: 'Proyectos', position: 1924}, 
     {name: 'Contactame', position: 2886}
   ];
-  const buttonsEn = [
+  const navigationsEn = [
     {name:'Home', position: 0}, 
     {name:'About me', position: 962}, 
     {name:'Projects', position: 1924}, 
     {name:'Contact', position: 2886}
   ];
-  const buttons = language === 'En' ? buttonsEn : buttonsEs;
+  const navigations = language === 'En' ? navigationsEn : navigationsEs;
   /* END BUTTON NAV */
 
   /* THEME DARK */
@@ -98,32 +100,31 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
       });
     }, 250);
   };
-
+console.log(isFirstSectionVisible);
   return (
     <>
-      <nav className={`md:bg-white shadow-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${scroll? '' : 'hidden'} `}>
+      <nav className={`shadow-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${isFirstSectionVisible? 'md:bg-white dark:bg-[#101418]' : 'bg-transparent backdrop-filter backdrop-blur-md'} `}>
         
-        <div className={`p-7 h-[380px] w-full flex flex-col items-start justify-around text-dark dark:text-white md:flex-row md:w-full md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-slate-800' : 'invisible'}`}>
-          {/* BUTTON NAV */}
+        <div className={`p-7 h-[380px] w-full flex flex-col items-start justify-around md:flex-row md:w-full md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-[#101418]' : 'invisible'} ${isFirstSectionVisible? 'text-dark dark:text-white' : 'text-white'}`}>
+          {/* NAVLINK */}
             <ul className='flex flex-col justify-around h-5/6 md:flex-row md:justify-evenly md:w-full'>
-              {buttons?.map((button, index) => (
-                <>
-                {console.log(buttons)}
+              {navigations?.map((navItem, index) => (
                 <li
-                  key={index}
-                  onClick={() => {
-                    scrollToSection(button.name);
-                    setIsOpen(false);
-                  }}
-                  className={`
-                  py-2 transition-transform duration-500 ease-in-out transform 
-                  ${currentSection === button.name 
-                    ? 'active: scale-110 border-b border-[#8BBAE8]' 
-                    : ''}`}
+                  key={index}                  
+                  className='navlink'
                 >
-                  <button>{button.name}</button>
+                  <Link
+                    className='' 
+                    activeClass="active" 
+                    to={navItem.name} 
+                    spy={true} 
+                    smooth={true} 
+                    offset={0} 
+                    duration={800} 
+                  >
+                    {navItem.name}
+                  </Link>
                 </li>
-                </>
               ))}
             </ul>
             <div className='flex'>
@@ -165,7 +166,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                       setlanguage(language === 'Es' ? 'En' : 'Es');
                     }, 500)
                     setIsOpen(false)
-                    setCurrentSection(getCurrentSection());
+                    // setCurrentSection(getCurrentSection());
                     scrollToTop();
                   }}
                     className='px- flex'
