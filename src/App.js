@@ -5,7 +5,6 @@ import TypingAnimation from './TypingAnimation/TypingAnimation';
 import About from './About/About';
 import Projects from './Proyects/Projects';
 import Contact from './Contact/Contact';
-import AnimationDown from './AnimationDown/AnimationDown';
 
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4"
 
@@ -40,6 +39,7 @@ function App() {
    const scrollToSection = (sectionId) => {
      const section = document.getElementById(sectionId);
        if (section) {
+        console.log(section)
          setTimeout(()=>{
            section.scrollIntoView({ 
              behavior: 'smooth',
@@ -57,26 +57,20 @@ function App() {
     const firstSection = document.getElementById(language === 'En' ? 'Home' : 'Inicio');
     if (firstSection) {
       const rect = firstSection.getBoundingClientRect();
-      console.log(rect.top, -window.innerHeight);
       if(rect.top <= -window.innerHeight) {
-        console.log('es true');
         setIsFirstSectionVisible(true)
       }
       else {
-        console.log('es false');
         setIsFirstSectionVisible(false)
       }
-      console.log(isFirstSectionVisible);
     }
   };
 
-  // Agregar el evento de scroll al montar el componente
-  window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-  // Eliminar el evento de scroll al desmontar el componente
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
 }, [language, isFirstSectionVisible]);
 
   return (
@@ -93,9 +87,11 @@ function App() {
             setCurrentSection={setCurrentSection}
             isFirstSectionVisible={isFirstSectionVisible}
           />
-          </div>    
-        <div className='flex justify-start items-center fixed w-full min-h-screen z-10'>
-          <TypingAnimation language={language}/>
+        </div>    
+        <div className='flex justify-center items-center fixed w-full min-h-screen z-10 bg-black'>
+          <div className='w-full border border-white flex justify-center'>
+            <TypingAnimation language={language} style={{width:"100%"}}/>
+          </div>
         </div>
         <video autoPlay loop muted className='w-full h-full fixed top-0 left-0 object-cover'>
           <source src={UrlVideo} type='video/mp4'/>
@@ -107,17 +103,17 @@ function App() {
       </section>
       <section 
         id={language === 'En' ? 'About me' : 'Acerca de mi'} 
-        className="w-full min-h-screen relative bg-white dark:bg-[#101418] z-[1000] p-6 flex items-center border">
+        className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
           <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
       </section>
       <section 
         id={language === 'En' ? 'Projects' : 'Proyectos'} 
-        className="w-full min-h-screen relative bg-white dark:bg-[#101418] z-[1000] p-6 flex items-center border">
+        className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
         <Projects language={language} setlanguage={setlanguage}/>
       </section>
       <section 
-        id={language === 'En' ? 'Contact' : 'Contactame'} 
-        className="w-full min-h-screen relative bg-white dark:bg-[#101418] z-[1000] p-6 flex items-center border">
+        id={language === 'En' ? 'Contact' : 'Contáctame'} 
+        className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
           <Contact language={language}/>
       </section>
     </div>

@@ -7,5 +7,6 @@
 .navlink .active {
   transform: scale(1.1) !important;
   will-change: transform;
-  border-bottom: 1px solid #8BBAE8;
+  border-bottom: 1px solid #593088;
+  transition: width 3s ease-in;
 }

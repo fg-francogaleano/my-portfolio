@@ -4,7 +4,7 @@ import './NavBar.css';
 
 function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection, isFirstSectionVisible}) {
   /* SCROLL STYLES NAV */
-    const [scroll, setScroll] = useState(true);
+    // const [scroll, setScroll] = useState(true);
     // const [blurred, setBlurred] = useState(false);
   
     // const getCurrentSection = () => {
@@ -45,7 +45,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
     {name:'Inicio', position: 0}, 
     {name: 'Acerca de mi', position: 962}, 
     {name: 'Proyectos', position: 1924}, 
-    {name: 'Contactame', position: 2886}
+    {name: 'Contáctame', position: 2886}
   ];
   const navigationsEn = [
     {name:'Home', position: 0}, 
@@ -100,7 +100,6 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
       });
     }, 250);
   };
-console.log(isFirstSectionVisible);
   return (
     <>
       <nav className={`shadow-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${isFirstSectionVisible? 'md:bg-white dark:bg-[#101418]' : 'bg-transparent backdrop-filter backdrop-blur-md'} `}>
@@ -114,7 +113,8 @@ console.log(isFirstSectionVisible);
                   className='navlink'
                 >
                   <Link
-                    className='' 
+                  style={{transform:"width 3s ease-in"}}
+                    className='py-2' 
                     activeClass="active" 
                     to={navItem.name} 
                     spy={true} 

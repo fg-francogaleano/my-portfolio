@@ -1,7 +1,6 @@
 
 import { Box, Snackbar, TextField, Stack } from '@mui/material'
 import MuiAlert from '@mui/material/Alert';
-import LoadingButton from '@mui/lab/LoadingButton';
 import { Formik } from 'formik';
 import validations from './validations';
 import emailjs from '@emailjs/browser';
@@ -94,14 +93,15 @@ function Contact({ language }) {
   return (
     <>
       <div className='w-full'>
-        <h2 className='font-condensed font-black tracking-widest visible text-3xl dark:text-white text-center py-9'>
+        <h2 className='font-condensed font-black tracking-widest visible text-5xl dark:text-white text-center py-9'>
           {contact}
+          <span className='w-14 h-[2px] bg-tertiary m-auto block rounded-full'></span>
         </h2>
         <div className='md:flex md:w-full md:h-full md:justify-evenly'>
           {/* CONTENT TEXT */}
           <div className='hidden md:block'>
             <div className='w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center'>
-              <p className='font-condensed font-black tracking-widest text-4xl dark:text-white text-center py-2'>
+              <p className='font-condensed font-black tracking-widest sm:text-8xl text-6xl bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2'>
                 {text}
               </p>
             </div>
@@ -117,7 +117,7 @@ function Contact({ language }) {
           >
             {({ values, errors, touched ,handleSubmit , handleChange, handleBlur }) => (
               <>
-                <div className='border border-green-700 rounded-lg'>
+                <div className='border border-green-700 rounded-lg dark:outline dark:outline-1 dark:outline-tertiary'>
                   <div className='w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-5'>
                     <Box
                       ref={refForm}
@@ -140,6 +140,10 @@ function Contact({ language }) {
                         required
                         fullWidth
                         margin='normal'
+                        // color='secondary'
+                        InputProps={{
+                          style: { borderColor: 'blue' },  // Cambia el color del borde del input
+                        }}
                       />
                       
                       {/* EMAIL */}
@@ -196,7 +200,7 @@ function Contact({ language }) {
                       />
 
                       {/* SUBMIT */}
-                      <LoadingButton 
+                      {/* <LoadingButton 
                         type='submit'
                         variant="outlined"
                         loading={loading}
@@ -205,7 +209,13 @@ function Contact({ language }) {
                         style={{ marginTop: '20px' }}
                       >
                         {send}
-                      </LoadingButton>
+                      </LoadingButton> */}
+                      <button
+                        onClick={() => handleLoading(touched)} 
+                        className='w-full my-4 bg-gradient-to-r from-primary via-secondary  to-tertiary px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-white'
+                      >
+                        {send}
+                      </button>
 
                       {/* SOCIAL MEDIA */}
                       <div className='w-full flex justify-start mt-2'>
