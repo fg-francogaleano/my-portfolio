@@ -2,7 +2,7 @@ import React from 'react'
 import Typed from 'react-typed';
 
 function TypingAnimation({ language }) {
-    const phrasesEs = ["¡Bienvenido!", "¡Comencemos!",""];
+    const phrasesEs = ["¡Bienvenido a mi sitio web!", "¡Comencemos!",""];
     const phrasesEn = ["¡Welcome!", `Let's start`,""]
     
   return (
@@ -16,8 +16,8 @@ function TypingAnimation({ language }) {
             strings={language === 'Es' ? phrasesEs : phrasesEn}
             typeSpeed={70}
             backSpeed={50}
-            loop={false}
-            cursorChar=""
+            loop={true}
+            // cursorChar=""
             />
         </h1>
       </div>

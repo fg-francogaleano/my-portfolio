@@ -1,7 +1,7 @@
 .navlink {
   font-size: 18px;
   cursor: pointer;
-  align-self: center;
+  align-self: flex-start;
   transition: transform 0.5s ease-in-out, border-bottom 0.5s ease-in-out, font-size 0.5s ease-in-out;}
 
 .navlink .active {

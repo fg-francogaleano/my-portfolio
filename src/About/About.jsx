@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from '@mui/material/Button';
 // import SliderSkrill from '../Slider/SliderSrill';
 import WhatsappButton from '../WhatsappButton/WhatsappButton';
 
@@ -7,7 +6,7 @@ function About({ language, scrollToSection }) {
   const contact = language === 'Es' ? 'Contáctame' : 'Contact'
   const title = language === 'Es' ? 'Acerca de mi' : 'About me';
   // const img = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1692823992/varietales/b7c5ca3b-46b6-44e0-8f42-76573ecccb00_j5putc.png";
-  const download = language === 'Es' ? 'Descargar Cv' : 'Download Cv';
+  const download = language === 'Es' ? 'Descargar CV' : 'Download CV';
   const text1 = language === 'Es' ? 'Hola, soy' : 'Hey, I am';
   const text = language === 'Es' 
   ? 'Tengo +10 de años de experiencia en el ámbito relacionado a la construcción de obras edilícias. Liderar y supervisar grupos de trabajos en este rubro, me ha permitido desarrollar habilidades de gestión, '
@@ -53,7 +52,7 @@ function About({ language, scrollToSection }) {
                         <button 
                         className='w-full outline outline-1 outline-tertiary text-black px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white' 
                         >
-                          {download} <i class="bi bi-download text-black dark:text-white"></i>
+                          <i class="bi bi-download text-black dark:text-white"></i> {download} 
                         </button>
                       </a>
                     </div>

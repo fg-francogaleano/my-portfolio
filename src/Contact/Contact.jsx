@@ -47,7 +47,7 @@ function Contact({ language }) {
     .then(res => {
       console.log(res.text)
       handleClick();
-      setLoading(false)
+      // setLoading(false)
     })
     .catch(err => {
       console.log(err)
@@ -78,16 +78,17 @@ function Contact({ language }) {
   /* END ALERT */
 
   /* LOADING */
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const handleLoading = (touched) => {
-    console.log(Object.keys(touched).length);
-    if (Object.keys(touched).length !== 0) {
-      setTimeout(()=> {
-        setLoading(true)
-      },300)
-    }
-  }
+  // const handleLoading = (touched) => {
+  //   console.log(Object.keys(touched).length);
+
+  //   if (Object.keys(touched).length !== 0) {
+  //     setTimeout(()=> {
+  //       setLoading(true)
+  //     },300)
+  //   }
+  // }
   /* END LOADING */
 
   return (
@@ -101,7 +102,7 @@ function Contact({ language }) {
           {/* CONTENT TEXT */}
           <div className='hidden md:block'>
             <div className='w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center'>
-              <p className='font-condensed font-black tracking-widest sm:text-8xl text-6xl bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2'>
+              <p className='font-condensed font-black tracking-widest xl:text-8xl sm:text-6xl l bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2'>
                 {text}
               </p>
             </div>
@@ -139,11 +140,7 @@ function Contact({ language }) {
                         variant="standard"
                         required
                         fullWidth
-                        margin='normal'
-                        // color='secondary'
-                        InputProps={{
-                          style: { borderColor: 'blue' },  // Cambia el color del borde del input
-                        }}
+                        margin='normal'                 
                       />
                       
                       {/* EMAIL */}
@@ -211,7 +208,7 @@ function Contact({ language }) {
                         {send}
                       </LoadingButton> */}
                       <button
-                        onClick={() => handleLoading(touched)} 
+                        type='submit' 
                         className='w-full my-4 bg-gradient-to-r from-primary via-secondary  to-tertiary px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-white'
                       >
                         {send}

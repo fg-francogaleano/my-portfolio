@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {projects} from './data.js'
-import { Button } from '@mui/material';
 
 function Projects({ language }) {
   const title = language === 'Es' ? 'Proyectos' : 'Projects';

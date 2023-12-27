@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import NavBar from './NavBar/NavBar';
-import TypingAnimation from './TypingAnimation/TypingAnimation';
+// import TypingAnimation from './TypingAnimation/TypingAnimation';
 import About from './About/About';
 import Projects from './Proyects/Projects';
 import Contact from './Contact/Contact';
@@ -88,12 +88,12 @@ function App() {
             isFirstSectionVisible={isFirstSectionVisible}
           />
         </div>    
-        <div className='flex justify-center items-center fixed w-full min-h-screen z-10 bg-black'>
-          <div className='w-full border border-white flex justify-center'>
+        <div className='flex justify-center items-center fixed w-full min-h-screen z-10'>
+          {/* <div className='w-full border border-white flex justify-center'>
             <TypingAnimation language={language} style={{width:"100%"}}/>
-          </div>
+          </div> */}
         </div>
-        <video autoPlay loop muted className='w-full h-full fixed top-0 left-0 object-cover'>
+        <video autoPlay loop={false} muted className='w-full h-full fixed top-0 left-0 object-cover'>
           <source src={UrlVideo} type='video/mp4'/>
         </video> 
         {/* <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div> */}

@@ -90,91 +90,131 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
 
   /* LANGUAGE */
   const iconSpain = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671842/varietales/92357_spain_icon_hbn8qn.png";
-  const iconUsa = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671831/varietales/16039_united_states_of_america_us_usa_icon_natugz.png"
+  const iconUsa = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671831/varietales/16039_united_states_of_america_us_usa_icon_natugz.png";
+  const idioma = language === 'Es' ? 'En' : 'Es'
+  const [isOpen1, setIsOpen1] = useState(false)
 
   const scrollToTop = () => {
     setTimeout(() => {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth', // Utiliza un desplazamiento suave
+        behavior: 'smooth',
       });
     }, 250);
   };
   return (
     <>
-      <nav className={`shadow-md flex justify-end text-lg font-medium tracking-widest h-[64px] md:py-4 md:h-auto ${isFirstSectionVisible? 'md:bg-white dark:bg-[#101418]' : 'bg-transparent backdrop-filter backdrop-blur-md'} `}>
+      <nav className={`overflow-visible border border-green shadow-md flex justify-end text-lg font-medium tracking-widest h-[68px] md:py-4  ${isFirstSectionVisible? 'md:bg-white dark:bg-[#101418]' : 'bg-transparent backdrop-filter backdrop-blur-md'} `}>
         
-        <div className={`p-7 h-[380px] w-full flex flex-col items-start justify-around md:flex-row md:w-full md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-[#101418]' : 'invisible'} ${isFirstSectionVisible? 'text-dark dark:text-white' : 'text-white'}`}>
-          {/* NAVLINK */}
-            <ul className='flex flex-col justify-around h-5/6 md:flex-row md:justify-evenly md:w-full'>
-              {navigations?.map((navItem, index) => (
-                <li
-                  key={index}                  
-                  className='navlink'
-                >
-                  <Link
-                  style={{transform:"width 3s ease-in"}}
-                    className='py-2' 
-                    activeClass="active" 
-                    to={navItem.name} 
-                    spy={true} 
-                    smooth={true} 
-                    offset={0} 
-                    duration={800} 
+        <div className={`border border-red p-7 h-[380px] w-full flex flex-col items-start justify-around md:flex-row md:justify-between md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-[#101418]' : 'invisible'} ${isFirstSectionVisible? 'text-dark dark:text-white' : 'text-white'}`}>
+          {/* NAVBAR */}
+            {/* PROFILE */}
+            <div className='md:flex gap-3 hidden md:block'>
+              <div>
+                <img 
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgE3b96JxT73GWLaAWUAx4IwKFD8_tuH3dxw&usqp=CAU" 
+                  alt="" 
+                  className='h-8 w-8 rounded-full'
+                />
+              </div>
+              <span className='font-medium tracking-widest'>FRANCO GALEANO</span>
+            </div>
+            {/* NAVLINK/THEME AND LANGUAGE */}
+            <div className='flex flex-col md:flex-row h-5/6 md:gap-6'>              
+              {/* NAVLINK */}
+              <ul className='md:h-full flex flex-col justify-around h-5/6 md:flex-row md:gap-6'>
+                {navigations?.map((navItem, index) => (
+                  <li
+                    key={index}                  
+                    className='navlink'
                   >
-                    {navItem.name}
-                  </Link>
+                    <Link
+                    style={{transform:"width 3s ease-in"}}
+                      className='pb-1' 
+                      activeClass="active" 
+                      to={navItem.name} 
+                      spy={true} 
+                      smooth={true} 
+                      offset={0} 
+                      duration={800} 
+                    >
+                      {navItem.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <hr className='h-4 self-center border border-grey'/>
+
+              {/* THEME/LANGUAGE */}
+              <ul className='flex md:gap-2'>
+                {/* THEME DARK */}
+                <li className='flex'>
+                  {theme === 'dark' 
+                    ? <i className="bi bi-moon-stars-fill"></i>
+                    : <i className="bi bi-brightness-high-fill"></i>}
+                  <button 
+                    onClick={() => {
+                      setTimeout(() => {
+                        handlerTheme()
+                      },500);
+                      setIsOpen(false)}}
+                    className='px-1'
+                  >
+                    {theme === 'light' 
+                    ? <i className="bi bi-toggle2-off px- text-[18px]"></i>
+                    : <i className="bi bi-toggle2-on px- text-[18px]"></i>}
+                  </button>
                 </li>
-              ))}
-            </ul>
-            <div className='flex'>
-              {/* THEME DARK */}
-              <div className='px-2 flex'>
-                {theme === 'dark' 
-                  ? <i className="bi bi-moon-stars-fill"></i>
-                  : <i className="bi bi-brightness-high-fill"></i>}
-                <button 
-                  onClick={() => {
-                    setTimeout(() => {
-                      handlerTheme()
-                    },500);
-                    setIsOpen(false)}}
-                  className='px-1'
-                >
-                  {theme === 'light' 
-                  ? <i className="bi bi-toggle2-off px- text-[18px]"></i>
-                  : <i className="bi bi-toggle2-on px- text-[18px]"></i>}
-                </button>
-              </div>
-              
-              {/* LANGUAGE */}
-              <div className='px-2 flex'>
-                {language === 'En' 
-                  ? (<>
-                      <img src={iconSpain} alt="spain" className='px-1'/> 
-                      <span>Es</span>
-                    </>) 
-                  : (
-                    <>
-                      <img src={iconUsa} alt="usa" className='px-1'/>
-                      <span>En</span>
-                    </>
-                  )}
-                <button 
-                  onClick={() => {
-                    setTimeout(() => {
-                      setlanguage(language === 'Es' ? 'En' : 'Es');
-                    }, 500)
-                    setIsOpen(false)
-                    // setCurrentSection(getCurrentSection());
-                    scrollToTop();
-                  }}
-                    className='px- flex'
-                >
-                  <i className="bi bi-caret-down-fill text-[8px] self-end"></i>
-                </button>
-              </div>
-            </div>      
+                
+                {/* LANGUAGE */}
+                <li className='gap-1 overflow-visible'>
+                  {language === 'En' 
+                    ? (<>
+                        {/* <img src={iconSpain} alt="spain" className='px-1'/>  */}
+                        <span>Es</span>
+                      </>) 
+                    : (
+                      <>
+                        {/* <img src={iconUsa} alt="usa" className='px-1'/> */}
+                        <span>En</span>
+                      </>
+                    )}
+                  <button 
+                    onClick={() => {
+                      setTimeout(() => {
+                        // setlanguage(language === 'Es' ? 'En' : 'Es');
+                        setIsOpen1(!isOpen1)
+                      }, 500)
+                      setIsOpen(false)
+                      // setCurrentSection(getCurrentSection());
+                      scrollToTop();
+                    }}
+                  >
+                    <i className="bi bi-caret-down-fill text-[8px] self-center"></i>
+                  </button>
+                {
+                
+                <div className={`rounded-sm w-9 h-auto hidden md:block ${isOpen1 ? 'invisible' : 'visible'}`}>
+                  {/* <div>
+                    <button onClick={setlanguage(language === 'Es' ? 'En' : 'Es')}>
+                      <img 
+                        src={iconSpain} 
+                        alt="spain" 
+                        className='px-1'
+                        />
+                    </button>
+                    <img 
+                      src={iconUsa} 
+                      alt="usa" 
+                      className='px-1'/>                
+                  </div> */}
+                <span>{idioma}</span>
+                </div>
+                }
+                </li>
+              </ul>      
+            </div>
         </div>
      
         {/* MENU BURGER */}
