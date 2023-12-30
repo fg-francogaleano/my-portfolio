@@ -57,7 +57,7 @@ function App() {
     const firstSection = document.getElementById(language === 'En' ? 'Home' : 'Inicio');
     if (firstSection) {
       const rect = firstSection.getBoundingClientRect();
-      if(rect.top <= -window.innerHeight) {
+      if(rect.top - 50<= -window.innerHeight) {
         setIsFirstSectionVisible(true)
       }
       else {
