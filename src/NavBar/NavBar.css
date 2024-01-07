@@ -4,9 +4,19 @@
   align-self: flex-start;
   transition: transform 0.5s ease-in-out, border-bottom 0.5s ease-in-out, font-size 0.5s ease-in-out;}
 
-.navlink .active {
+/* .navlink .active {
   transform: scale(1.1) !important;
   will-change: transform;
-  border-bottom: 1px solid #593088;
+  color: #593088;
   transition: width 3s ease-in;
-}
+} */
+
+/* @media (min-width: 768px) {
+  .navlink .active {
+    transform: scale(1.1) !important;
+    will-change: transform;
+    border-bottom: 1px solid #593088;
+    color: white;
+    transition: width 3s ease-in;
+  }
+} */

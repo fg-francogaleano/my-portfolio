@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
 import './NavBar.css';
-import { text } from '@fortawesome/fontawesome-svg-core';
 
 function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection, isFirstSectionVisible}) {
   /* SCROLL STYLES NAV */
@@ -92,7 +91,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
   /* LANGUAGE */
   const iconSpain = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671842/varietales/92357_spain_icon_hbn8qn.png";
   const iconUsa = "https://res.cloudinary.com/dfmkjxjsf/image/upload/v1691671831/varietales/16039_united_states_of_america_us_usa_icon_natugz.png";
-  const idioma = language === 'Es' ? 'Es' : 'En'
+  const idioma = language === 'Es' ? 'ES' : 'EN'
   const [isOpen1, setIsOpen1] = useState(false)
 
   // const scrollToTop = () => {
@@ -116,9 +115,9 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
     <>
       <nav className={`shadow-md flex justify-end text-lg font-medium tracking-widest h-[68px] md:py-4  ${isFirstSectionVisible ? 'bg-white dark:bg-[#0F0F0F]' : 'bg-transparent backdrop-filter backdrop-blur-md'} `}>
         {/* NAVBAR */}
-        <div className={`shadow-md p-7 h-[380px] w-full flex flex-col items-start justify-around   md:shadow-none md:flex-row md:justify-between md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-[#0F0F0F]' : 'invisible'} ${isFirstSectionVisible? 'text-black dark:text-white' : 'md:text-white dark:text-white'}`}>
+        <div className={`shadow-md p-7 h-[380px] w-full flex flex-col items-start justify-around md:shadow-none md:flex-row md:justify-between md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-[#0F0F0F]' : 'invisible'} ${isFirstSectionVisible? 'text-black dark:text-white' : 'md:text-white dark:text-white'}`}>
             {/* PROFILE */}
-            <div className='md:flex gap-3 hidden md:block'>
+            <div className='lg:flex gap-3 hidden lg:block'>
               <div>
                 <img 
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgE3b96JxT73GWLaAWUAx4IwKFD8_tuH3dxw&usqp=CAU" 
@@ -129,9 +128,9 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
               <span className='font-medium tracking-widest'>FRANCO GALEANO</span>
             </div>
             {/* NAVLINK/THEME AND LANGUAGE */}
-            <div className='w-full flex flex-col md:w-auto md:flex-row h-5/6 md:gap-6'>              
+            <div className='w-full h-5/6 flex flex-col md:flex-row md:gap-6 lg:w-auto'>              
               {/* NAVLINK */}
-              <ul className='md:h-full md:flex-row md:gap-6 flex flex-col justify-around h-5/6'>
+              <ul className='h-5/6 flex flex-col justify-around md:h-full md:w-full md:flex-row md:gap-6'>
                 {navigations?.map((navItem, index) => (
                   <>
                     <li
@@ -139,9 +138,8 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                       className='navlink'
                     >
                       <Link
-                      style={{transform:"width 3s ease-in"}}
                         className='pb-1' 
-                        activeClass="active" 
+                        activeClass="text-secondary md:border-b md:border-secondary md:color-inherit scale-110" 
                         to={navItem.name} 
                         spy={true} 
                         smooth={true} 
@@ -162,9 +160,11 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
               <ul className='h-8 flex justify-between md:h-auto md:gap-2'>
                 {/* THEME DARK */}
                 <li className='flex'>
-                  {theme === 'dark' 
-                    ? <i className="bi bi-moon-stars-fill"></i>
-                    : <i className="bi bi-brightness-high-fill"></i>}
+                  {
+                    theme === 'dark' 
+                    ? <i className="bi bi-moon-stars font-normal"></i>
+                    : <i className="bi bi-sun font-normal"></i>
+                  }
                   <button 
                     onClick={() => {
                       setTimeout(() => {
@@ -174,14 +174,14 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                     className='px-1'
                   >
                     {theme === 'light' 
-                    ? <i className="bi bi-toggle2-off px- text-[18px]"></i>
-                    : <i className="bi bi-toggle2-on px- text-[18px]"></i>}
+                    ? <i className="bi bi-toggle2-off px- text-[18px] font-normal"></i>
+                    : <i className="bi bi-toggle2-on px- text-[18px] font-normal"></i>}
                   </button>
                 </li>
                 
                 {/* LANGUAGE */}
-                <li className='gap-1'>
-                  <span>{idioma}</span>
+                <li className='gap-3'>
+                  <span className='font-normal text-sm'>{idioma}</span>
                   {/* ICON */}
                   <button 
                     onClick={() => {
@@ -189,7 +189,12 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                       // setIsOpen(false)
                     }}
                   >
-                    <i className="bi bi-caret-down-fill text-[8px] self-center"></i>
+                    {
+                      isOpen1 
+                    ? <i className="bi bi bi-chevron-up text-[8px] self-center"></i>
+                    : <i className="bi bi bi-chevron-down text-[8px] self-center"></i>
+                    }
+                    
                   </button>
                   {/* DROPDOWN MENU */}
                   <div className={`rounded-sm w-9 h-auto md:block relative z-50 ${isOpen1 ? 'visible' : 'invisible'}`}>
@@ -216,7 +221,6 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
             </div>
         </div>
         {/* VERSION MOBILE */}
-        {/* <div className='border border-red w-full flex justify-between md:w-0 '> */}
           {/* PROFILE */}
           <div className='absolute top-4 left-4 md:hidden'>
             <div className='flex gap-3'>
