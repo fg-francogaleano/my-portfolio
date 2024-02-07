@@ -49,10 +49,11 @@ function About({ language, scrollToSection }) {
                     {/* BOTTON DOWNLOAD CV */}
                     <div className='w-full'>
                       <a href='/Cv-Franco Galeano.pdf' download>
-                        <button 
-                        className='w-full outline outline-1 outline-tertiary text-black px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white' 
+                        <button className='relative w-full outline outline-1 outline-tertiary text-black px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white hover:text-tertiary' 
                         >
-                          <i class="bi bi-download text-black dark:text-white"></i> {download} 
+                          <span>
+                            <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i> <span>{download}</span>
+                          </span>
                         </button>
                       </a>
                     </div>

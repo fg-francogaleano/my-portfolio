@@ -87,7 +87,7 @@ function Projects({ language }) {
                   </div>
                 </div>
 
-                {index < projectsRender.length - 1 && <div className='w-[75%] m-auto'><hr /></div>}
+                {index < projectsRender.length - 1 && <div className='w-[75%] m-auto'><hr className='border border-[#C4C4C4] dark:border-grey rounded-full'/></div>}
               </div>
               <div>
 

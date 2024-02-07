@@ -5,6 +5,8 @@ import NavBar from './NavBar/NavBar';
 import About from './About/About';
 import Projects from './Proyects/Projects';
 import Contact from './Contact/Contact';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material';
 
 const UrlVideo = "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4"
 
@@ -73,50 +75,96 @@ function App() {
     };
 }, [language, isFirstSectionVisible]);
 
+/* THEMEMODE MUI */
+const [themeMode, setThemeMode] = useState(localStorage.getItem('color-themeMui') || "light");
+
+  useEffect(()=>{
+    /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
+    if (localStorage.getItem('color-themeMui') !== null) {
+      console.log('entro en el 1');
+      if (localStorage.getItem('color-themeMui') === 'light') {
+          localStorage.setItem('color-themeMui', 'dark');
+      } else {
+          localStorage.setItem('color-themeMui', 'light');
+      }
+
+    /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
+    } else {
+    console.log('entro en el 2');
+      if (themeMode === 'light') {
+        localStorage.setItem('color-themeMui', 'dark');
+      } else {
+        localStorage.setItem('color-themeMui', 'light');
+      }
+    } 
+  },[themeMode])
+
+  const toggleThemeMode = () => {
+    setThemeMode(themeMode === 'dark' ? 'light' : 'dark');
+  };
+  
+
+  const theme = createTheme({
+    palette:{
+      mode: themeMode,
+      primary: {
+        main:"#FB3088",
+        dark:"#FFFFFF"
+      },
+      secondary: {
+        main: "#083088"
+      }
+    }
+  })
+/* END THEMEMODE MUI */
+
   return (
-    <div className='bg-white dark:bg-slate-800'>
-      <section 
-        id={language === 'En' ? 'Home' : 'Inicio'} 
-        className="w-full min-h-screen relative" >
-        <div className='fixed w-full z-[1001]'>
-          <NavBar 
-            language={language} 
-            setlanguage={setlanguage} 
-            scrollToSection={scrollToSection} 
-            currentSection={currentSection}
-            setCurrentSection={setCurrentSection}
-            isFirstSectionVisible={isFirstSectionVisible}
-          />
-        </div>    
-        <div className='flex justify-center items-center fixed w-full min-h-screen z-10'>
-          {/* <div className='w-full border border-white flex justify-center'>
-            <TypingAnimation language={language} style={{width:"100%"}}/>
+    <ThemeProvider theme={theme}>
+      <div className='bg-white dark:bg-slate-800'>
+        <section 
+          id={language === 'En' ? 'Home' : 'Inicio'} 
+          className="w-full min-h-screen relative" >
+          <div className='fixed w-full z-[1001]'>
+            <NavBar 
+              language={language} 
+              setlanguage={setlanguage} 
+              scrollToSection={scrollToSection} 
+              currentSection={currentSection}
+              setCurrentSection={setCurrentSection}
+              isFirstSectionVisible={isFirstSectionVisible}
+              toggleThemeMode={toggleThemeMode}
+            />
+          </div>    
+          <div className='flex justify-center items-center fixed w-full min-h-screen z-10'>
+            {/* <div className='w-full border border-white flex justify-center'>
+              <TypingAnimation language={language} style={{width:"100%"}}/>
+            </div> */}
+          </div>
+          <video autoPlay loop={false} muted className='w-full h-full fixed top-0 left-0 object-cover'>
+            <source src={UrlVideo} type='video/mp4'/>
+          </video> 
+          {/* <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div> */}
+          {/* <div className='w-full h-full flex justify-center items-end absolute bottom-0 left-0'>
+            <AnimationDown />
           </div> */}
-        </div>
-        <video autoPlay loop={false} muted className='w-full h-full fixed top-0 left-0 object-cover'>
-          <source src={UrlVideo} type='video/mp4'/>
-        </video> 
-        {/* <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div> */}
-        {/* <div className='w-full h-full flex justify-center items-end absolute bottom-0 left-0'>
-          <AnimationDown />
-        </div> */}
-      </section>
-      <section 
-        id={language === 'En' ? 'About me' : 'Acerca de mi'} 
-        className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
-          <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
-      </section>
-      <section 
-        id={language === 'En' ? 'Projects' : 'Proyectos'} 
-        className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
-        <Projects language={language} setlanguage={setlanguage}/>
-      </section>
-      <section 
-        id={language === 'En' ? 'Contact' : 'Contáctame'} 
-        className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
-          <Contact language={language}/>
-      </section>
-    </div>
+        </section>
+        <section 
+          id={language === 'En' ? 'About me' : 'Acerca de mi'} 
+          className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
+            <About language={language} setlanguage={setlanguage} scrollToSection={scrollToSection}/>
+        </section>
+        <section 
+          id={language === 'En' ? 'Projects' : 'Proyectos'} 
+          className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
+          <Projects language={language} setlanguage={setlanguage}/>
+        </section>
+        <section 
+          id={language === 'En' ? 'Contact' : 'Contáctame'} 
+          className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border">
+            <Contact language={language}/>
+        </section>
+      </div>
+    </ThemeProvider>
   );
 }
 

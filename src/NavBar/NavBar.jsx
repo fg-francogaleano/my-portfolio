@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
 import './NavBar.css';
 
-function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection, isFirstSectionVisible}) {
+function NavBar({ language, setlanguage, scrollToSection, currentSection, setCurrentSection, isFirstSectionVisible, toggleThemeMode}) {
+  // console.log(toggleThemeMode);
   /* SCROLL STYLES NAV */
     // const [scroll, setScroll] = useState(true);
     // const [blurred, setBlurred] = useState(false);
@@ -115,7 +116,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
     <>
       <nav className={`shadow-md flex justify-end text-lg font-medium tracking-widest h-[68px] md:py-4  ${isFirstSectionVisible ? 'bg-white dark:bg-[#0F0F0F]' : 'bg-transparent backdrop-filter backdrop-blur-md'} `}>
         {/* NAVBAR */}
-        <div className={`shadow-md p-7 h-[380px] w-full flex flex-col items-start justify-around md:shadow-none md:flex-row md:justify-between md:h-auto md:py-0 md:visible ${isOpen? 'visible bg-white dark:bg-[#0F0F0F]' : 'invisible'} ${isFirstSectionVisible? 'text-black dark:text-white' : 'md:text-white dark:text-white'}`}>
+        <div className={`shadow-md p-7 h-[380px] w-full flex flex-col items-start justify-around md:shadow-none md:flex-row md:justify-between md:h-auto md:py-0 md:visible ${isOpen ? 'visible bg-white dark:bg-[#0F0F0F]' : 'invisible'} ${isFirstSectionVisible ? 'text-black dark:text-white' : 'md:text-white dark:text-white'}`}>
             {/* PROFILE */}
             <div className='lg:flex gap-3 hidden lg:block'>
               <div>
@@ -139,7 +140,7 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                     >
                       <Link
                         className='pb-1' 
-                        activeClass="text-secondary md:border-b md:border-secondary md:color-inherit scale-110" 
+                        activeClass={`md:border-b md:border-secondary ${isFirstSectionVisible ? 'text-black dark:text-white' : 'text-black dark:text-white md:text-white'}`} 
                         to={navItem.name} 
                         spy={true} 
                         smooth={true} 
@@ -149,12 +150,15 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                         {navItem.name}
                       </Link>
                     </li>
-                    <hr className='border-none outline outline-1 outline-grey md:hidden'/>
+                    <hr className='border-none outline outline-1 outline-[#C4C4C4] rounded-full dark:outline-grey md:hidden'/>
                   </>
                 ))}
               </ul>
 
-              <hr className='h-4 self-center border border-grey hidden md:block'/>
+              <hr 
+                style={{border: "1px solid #C4C4C4"}} 
+                className={`h-4 self-center hidden md:block ${isFirstSectionVisible ? 'border border-[#C4C4C4]': 'border border-grey'}`}
+              />
 
               {/* THEME/LANGUAGE */}
               <ul className='h-8 flex justify-between md:h-auto md:gap-2'>
@@ -168,7 +172,8 @@ function NavBar({ language, setlanguage, scrollToSection, currentSection, setCur
                   <button 
                     onClick={() => {
                       setTimeout(() => {
-                        handlerTheme()
+                        handlerTheme();
+                        toggleThemeMode();
                       },500);
                       setIsOpen(false)}}
                     className='px-1'
