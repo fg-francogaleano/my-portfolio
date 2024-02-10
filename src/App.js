@@ -140,7 +140,7 @@ const [themeMode, setThemeMode] = useState(localStorage.getItem('color-themeMui'
               <TypingAnimation language={language} style={{width:"100%"}}/>
             </div> */}
           </div>
-          <video autoPlay loop={false} muted className='w-full h-full fixed top-0 left-0 object-cover'>
+          <video autoPlay loop muted className='w-full h-full fixed top-0 left-0 object-cover'>
             <source src={UrlVideo} type='video/mp4'/>
           </video> 
           {/* <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div> */}

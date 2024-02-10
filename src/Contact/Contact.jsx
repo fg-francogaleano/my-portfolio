@@ -91,6 +91,18 @@ function Contact({ language }) {
   // }
   /* END LOADING */
 
+  /* BOTTON SEND */
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+  /* END BOTTON SEND */
+
   return (
     <>
       <div className='w-full'>
@@ -208,9 +220,12 @@ function Contact({ language }) {
                         {send}
                       </LoadingButton> */}
                       <button
-                        type='submit' 
-                        className='w-full my-4 bg-gradient-to-r from-primary via-secondary  to-tertiary px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-white'
+                        type='submit'
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave} 
+                        className={`w-full my-4 bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-black dark:text-white transition duration-1000 ease-in-out ${hovered? 'outline outline-1 outline-secondary dark:outline-tertiary': 'outline-none'}`}
                       >
+                        <span className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full left-0 bottom-0 transition-width duration-300 ease-in-out z-[-1] ${hovered? 'w-0': 'w-full'}`}></span>
                         {send}
                       </button>
 

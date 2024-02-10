@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import SliderSkrill from '../Slider/SliderSrill';
 import WhatsappButton from '../WhatsappButton/WhatsappButton';
 
@@ -11,6 +11,29 @@ function About({ language, scrollToSection }) {
   const text = language === 'Es' 
   ? 'Tengo +10 de años de experiencia en el ámbito relacionado a la construcción de obras edilícias. Liderar y supervisar grupos de trabajos en este rubro, me ha permitido desarrollar habilidades de gestión, '
   : 'I have +10 years of experience in the field of building construction. Leading and supervising work groups has allowed me to develop management, coordination and decision-making skills in a dynamic environment.Currently, my goal is to consolidate myself in a position where I can add value, as an essential member of a team, addressing large-scale challenges. I am willing to bring the teamwork skills I have cultivated throughout my career and training as a developer.'
+  /* HOVER BOTTON CONTACT */
+  const [hovered1, setHovered1] = useState(false);
+
+  const handleMouseEnter1 = () => {
+    setHovered1(true);
+  };
+
+  const handleMouseLeave1 = () => {
+    setHovered1(false);
+  };
+  /* END HOVER BOTTON DOWNLOAD */
+
+  /* HOVER BOTTON DOWNLOAD */
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+  /* END HOVER BOTTON DOWNLOAD */
   return (
     <>
       <div className='w-full md:mt-1 self-center'>
@@ -36,24 +59,31 @@ function About({ language, scrollToSection }) {
                     {/* BOTTON CONTACT */}
                     <div className='w-full'>
                       <button
+                        onMouseEnter={handleMouseEnter1}
+                        onMouseLeave={handleMouseLeave1}
                         onClick={() => {
                           setTimeout(()=>{
                             scrollToSection(contact)
                           }, 100);
                         }} 
-                        className='w-full bg-gradient-to-r from-primary via-secondary  to-tertiary px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-white'
+                        className={`w-full bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${hovered1? 'outline outline-1 outline-secondary': 'outline-none'}`}
                       >
                         {contact}
+                        <span className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full right-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${hovered1? 'w-0 ': 'w-full'}`}></span> 
                       </button>
                     </div>
                     {/* BOTTON DOWNLOAD CV */}
                     <div className='w-full'>
                       <a href='/Cv-Franco Galeano.pdf' download>
-                        <button className='relative w-full outline outline-1 outline-tertiary text-black px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white hover:text-tertiary' 
+                        <button 
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
+                          className='relative w-full outline outline-1 outline-tertiary text-black px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white hover:w-full overflow-hidden' 
                         >
-                          <span>
-                            <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i> <span>{download}</span>
+                          <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i> {download}
+                          <span className={`bg-tertiary absolute h-full left-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${hovered? 'w-full': 'w-0'}`}>
                           </span>
+                            
                         </button>
                       </a>
                     </div>
