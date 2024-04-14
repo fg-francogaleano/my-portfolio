@@ -239,7 +239,7 @@ function Contact({ language }) {
                           target="_blank"
                           className='mx-2' 
                         >
-                            <i className="bi bi-linkedin text-xl dark:text-white"></i>
+                            <i className="bi bi-linkedin text-xl dark:text-[#828282] text-[#828282]"></i>
                         </a>
                        {/* INSTAGRAM */}
                         <a 

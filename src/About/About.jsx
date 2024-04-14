@@ -148,24 +148,31 @@ function About({ language, scrollToSection }) {
               {/* BOTTON CONTACT */}
               <div className='max-w-[500px] m-auto flex'>
                 <div className='w-full gap-1'>
-                  <button
-                    onClick={() => {
-                      setTimeout(()=>{
-                        scrollToSection(contact)
-                      }, 100);
-                    }} 
-                    className='w-full my-2 bg-gradient-to-r from-primary via-secondary  to-tertiary px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-white'
-                  >
-                    {contact}
-                  </button>
-                  <a href='/Cv-Franco Galeano.pdf' download>
-                    <button 
-                      className='w-full my-2 outline outline-1 outline-secondary px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-black dark:text-white' 
+                   <button
+                      onMouseEnter={handleMouseEnter1}
+                      onMouseLeave={handleMouseLeave1}
+                      onClick={() => {
+                        setTimeout(()=>{
+                          scrollToSection(contact)
+                        }, 100);
+                      }} 
+                      className={`w-full bg-transparent relative overflow-hidden my-1 px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${hovered1? 'outline outline-1 outline-secondary': 'outline-none'}`}
                     >
-                      {download} <i className="bi bi-download text-black"></i>
+                      {contact}
+                      <span className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full right-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${hovered1? 'w-0 ': 'w-full'}`}></span> 
                     </button>
-                  </a>
 
+                    <a href='/Cv-Franco Galeano.pdf' download>
+                      <button 
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        className='relative w-full outline outline-1 outline-tertiary text-black my-1 px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white hover:w-full overflow-hidden' 
+                      >
+                        <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i> {download}
+                        <span className={`bg-tertiary absolute h-full left-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${hovered? 'w-full': 'w-0'}`}>
+                        </span>                            
+                      </button>
+                    </a>
                 </div>
               </div>
 
