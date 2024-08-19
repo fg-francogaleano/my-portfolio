@@ -9,8 +9,8 @@ function About({ language, scrollToSection }) {
   const download = language === 'Es' ? 'Descargar CV' : 'Download CV';
   const text1 = language === 'Es' ? 'Hola, soy' : 'Hey, I am';
   const text = language === 'Es' 
-  ? 'Tengo +10 de años de experiencia en el ámbito relacionado a la construcción de obras edilícias. Liderar y supervisar grupos de trabajos en este rubro, me ha permitido desarrollar habilidades de gestión, '
-  : 'I have +10 years of experience in the field of building construction. Leading and supervising work groups has allowed me to develop management, coordination and decision-making skills in a dynamic environment.Currently, my goal is to consolidate myself in a position where I can add value, as an essential member of a team, addressing large-scale challenges. I am willing to bring the teamwork skills I have cultivated throughout my career and training as a developer.'
+  ? 'Me especializo en crear experiencias web digitales de alta calidad, enfocándome en contenido animado, responsivo e interactivo. Diseño y codifico elementos maravillosamente simples. Trabajo constantemente para mejorar mis habilidades, amo lo que hago.'
+  : 'I specialize in creating high-quality digital web experiences, focusing on animated, responsive and interactive content. I design and code beautifully simple elements. I constantly work to improve my skills, I love what I do'
   /* HOVER BOTTON CONTACT */
   const [hovered1, setHovered1] = useState(false);
 
@@ -136,7 +136,7 @@ function About({ language, scrollToSection }) {
           </div>
           {/* CONTENT IMAGE */}
           <div className='md:self-center'>
-            <div className='w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[500px]'>
+            <div className='w-full h-full m-auto max-w-[500px] md:min-w-[300px] md:h-auto md:max-w-[350px] 2xl:min-w-[350px] 2xl:h-auto 2xl:max-w-[500px]'>
               <img 
                 src='/imagen1.png' 
                 alt="Franco Galeano" 

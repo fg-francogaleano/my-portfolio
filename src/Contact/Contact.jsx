@@ -130,8 +130,8 @@ function Contact({ language }) {
           >
             {({ values, errors, touched ,handleSubmit , handleChange, handleBlur }) => (
               <>
-                <div className='border border-green-700 rounded-lg dark:outline dark:outline-1 dark:outline-tertiary'>
-                  <div className='w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-5'>
+                <div className='w-auto'>
+                  <div className='rounded-lg   dark:outline dark:outline-1 dark:outline-tertiary w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-5'>
                     <Box
                       ref={refForm}
                       component="form"
