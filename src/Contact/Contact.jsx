@@ -1,11 +1,11 @@
-
-import { Box, Snackbar, TextField, Stack } from '@mui/material'
-import MuiAlert from '@mui/material/Alert';
-import { Formik } from 'formik';
-import validations from './validations';
-import emailjs from '@emailjs/browser';
-import React, { useRef, useState } from 'react';
-import WhatsappButton from '../WhatsappButton/WhatsappButton'
+import { Box, Snackbar, TextField, Stack } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import { Formik } from "formik";
+import validations from "./validations";
+import emailjs from "@emailjs/browser";
+import React, { useRef, useState } from "react";
+import WhatsappButton from "../WhatsappButton/WhatsappButton";
+import { motion } from "framer-motion";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -13,50 +13,58 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function Contact({ language }) {
   /* TEXT */
-  const contact = language === 'Es' ? 'Contáctame' : 'Contact me';
-  const name = language === 'Es' ? 'Nombre' : 'Name';
-  const email = language === 'Es' ? 'Correo electrónico' : 'Email';
-  const subject = language === 'Es' ? 'Asunto' : 'Subject';
-  const message = language === 'Es' ? 'Mesaje' : 'Message';
-  const send = language === 'Es' ? 'Enviar' : 'Submit';
-  const text = language === 'Es' ? '¡Trabajemos en equipo!' : 'We work as a team!';
-  const alertSuccess = language === 'Es' ? 'Mensaje enviado con éxito' : 'Message sent succesfully';
-  const alertError = language === 'Es' ? 'Ocurrió un error vuelva a intertar' : 'An error occurred, try again';
+  const contact = language === "Es" ? "Contáctame" : "Contact me";
+  const name = language === "Es" ? "Nombre" : "Name";
+  const email = language === "Es" ? "Correo electrónico" : "Email";
+  const subject = language === "Es" ? "Asunto" : "Subject";
+  const message = language === "Es" ? "Mesaje" : "Message";
+  const send = language === "Es" ? "Enviar" : "Submit";
+  const text =
+    language === "Es" ? "¡Trabajemos en equipo!" : "We work as a team!";
+  const alertSuccess =
+    language === "Es"
+      ? "Mensaje enviado con éxito"
+      : "Message sent succesfully";
+  const alertError =
+    language === "Es"
+      ? "Ocurrió un error vuelva a intertar"
+      : "An error occurred, try again";
   /* END TEXT */
 
-/* FORM */
+  /* FORM */
   const initialValues = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-    nombre: '',
-    correo: '',
-    asunto: '',
-    mensaje: ''
-  }
-  
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    nombre: "",
+    correo: "",
+    asunto: "",
+    mensaje: "",
+  };
+
   const refForm = useRef();
 
   const handlerSubmit = () => {
-    const serviceId = 'service_rn3w3g9';
-    const templateId = 'template_5vwro9e';
-    const apiKey = 'pxGg36sd8xaftbeW3';
+    const serviceId = "service_rn3w3g9";
+    const templateId = "template_5vwro9e";
+    const apiKey = "pxGg36sd8xaftbeW3";
 
-    emailjs.sendForm(serviceId, templateId, refForm.current, apiKey)
-    .then(res => {
-      console.log(res.text)
-      handleClick();
-      // setLoading(false)
-    })
-    .catch(err => {
-      console.log(err)
-      handleClick();
-      setSuccess(false)
-      setTimeout(()=>{
-        setSuccess(true);
-      }, 6000)
-    })
+    emailjs
+      .sendForm(serviceId, templateId, refForm.current, apiKey)
+      .then((res) => {
+        console.log(res.text);
+        handleClick();
+        // setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err);
+        handleClick();
+        setSuccess(false);
+        setTimeout(() => {
+          setSuccess(true);
+        }, 6000);
+      });
     // setLoading(false)
   };
   /* END FORM */
@@ -70,7 +78,7 @@ function Contact({ language }) {
   };
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
@@ -105,98 +113,144 @@ function Contact({ language }) {
 
   return (
     <>
-      <div className='w-full'>
-        <h2 className='font-condensed font-black tracking-widest visible text-5xl dark:text-white text-center py-9'>
+      <div className="w-full">
+        <motion.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: -50 },
+          }}
+          className="font-condensed font-black tracking-widest visible text-5xl dark:text-white text-center py-9"
+        >
           {contact}
-          <span className='w-14 h-[2px] bg-tertiary m-auto block rounded-full'></span>
-        </h2>
-        <div className='md:flex md:w-full md:h-full md:justify-evenly'>
+          <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span>
+        </motion.h2>
+        <div className="md:flex md:w-full md:h-full md:justify-evenly">
           {/* CONTENT TEXT */}
-          <div className='hidden md:block'>
-            <div className='w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center'>
-              <p className='font-condensed font-black tracking-widest xl:text-8xl sm:text-6xl l bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2'>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            variants={{
+              visible: { opacity: 1, x: 0 },
+              hidden: { opacity: 0, x: -50 },
+            }}
+            className="hidden md:block"
+          >
+            <div className="w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center">
+              <p className="font-condensed font-black tracking-widest xl:text-8xl sm:text-6xl l bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2">
                 {text}
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* CONTENT FORM */}
           <Formik
             initialValues={initialValues}
             validate={(values, language) => validations(values, language)}
-            onSubmit={(values, {resetForm}) => {
+            onSubmit={(values, { resetForm }) => {
               resetForm();
-              handlerSubmit(values)}}
+              handlerSubmit(values);
+            }}
           >
-            {({ values, errors, touched ,handleSubmit , handleChange, handleBlur }) => (
+            {({
+              values,
+              errors,
+              touched,
+              handleSubmit,
+              handleChange,
+              handleBlur,
+            }) => (
               <>
-                <div className='w-auto'>
-                  <div className='rounded-lg   dark:outline dark:outline-1 dark:outline-tertiary w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-5'>
-                    <Box
-                      ref={refForm}
-                      component="form"
-                      onSubmit={handleSubmit}
-                    >
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  variants={{
+                    visible: { opacity: 1, x: 0 },
+                    hidden: { opacity: 0, x: 50 },
+                  }}
+                  className="w-auto"
+                >
+                  <div className="rounded-lg outline outline-1 outline-tertiary  dark:outline dark:outline-1 dark:outline-tertiary w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-5">
+                    <Box ref={refForm} component="form" onSubmit={handleSubmit}>
                       {/* NAME */}
                       <TextField
-                        type='text'
-                        id='name' 
-                        name='name'
+                        type="text"
+                        id="name"
+                        name="name"
                         value={values.name}
-                        autoComplete='off'  
+                        autoComplete="off"
                         label={name}
-                        helperText={touched.name && (language === 'Es' ? errors.nombre : errors.name)}
+                        helperText={
+                          touched.name &&
+                          (language === "Es" ? errors.nombre : errors.name)
+                        }
                         error={touched.name && errors.name}
                         onChange={handleChange}
-                        onBlur={handleBlur} 
+                        onBlur={handleBlur}
                         variant="standard"
                         required
                         fullWidth
-                        margin='normal'                 
+                        margin="normal"
                       />
-                      
+
                       {/* EMAIL */}
                       <TextField
-                        type='email'
-                        id='email' 
-                        name='email'
-                        value={values.email} 
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={values.email}
                         label={email}
-                        helperText={touched.email && (language === 'Es' ? errors.correo : errors.email)}
+                        helperText={
+                          touched.email &&
+                          (language === "Es" ? errors.correo : errors.email)
+                        }
                         error={touched.email && errors.email}
                         onChange={handleChange}
-                        onBlur={handleBlur} 
+                        onBlur={handleBlur}
                         variant="standard"
                         required
                         fullWidth
-                        margin='normal'
+                        margin="normal"
                       />
 
                       {/* SUBJECT */}
                       <TextField
-                        type='text'
-                        id='subject' 
-                        name='subject'
-                        value={values.subject} 
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={values.subject}
                         label={subject}
-                        helperText={touched.subject && (language === 'Es' ? errors.asunto : errors.subject)}
-                        error={touched.subject && errors.subject  }
+                        helperText={
+                          touched.subject &&
+                          (language === "Es" ? errors.asunto : errors.subject)
+                        }
+                        error={touched.subject && errors.subject}
                         onChange={handleChange}
-                        onBlur={handleBlur} 
+                        onBlur={handleBlur}
                         variant="standard"
                         required
                         fullWidth
-                        margin='normal'
+                        margin="normal"
                       />
 
                       {/* MESSAGE */}
                       <TextField
-                        type='text'
-                        id='message'
-                        name='message'
-                        value={values.message}                      
+                        type="text"
+                        id="message"
+                        name="message"
+                        value={values.message}
                         label={message}
-                        helperText={touched.message && (language === 'Es' ? errors.mensaje : errors.message)}
+                        helperText={
+                          touched.message &&
+                          (language === "Es" ? errors.mensaje : errors.message)
+                        }
                         error={touched.message && errors.message}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -205,7 +259,7 @@ function Contact({ language }) {
                         variant="standard"
                         required
                         fullWidth
-                        margin='normal'
+                        margin="normal"
                       />
 
                       {/* SUBMIT */}
@@ -220,67 +274,81 @@ function Contact({ language }) {
                         {send}
                       </LoadingButton> */}
                       <button
-                        type='submit'
+                        type="submit"
                         onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave} 
-                        className={`w-full my-4 bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-black dark:text-white transition duration-1000 ease-in-out ${hovered? 'outline outline-1 outline-secondary dark:outline-tertiary': 'outline-none'}`}
+                        onMouseLeave={handleMouseLeave}
+                        className={`w-full my-4 bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-black dark:text-white transition duration-1000 ease-in-out ${
+                          hovered
+                            ? "outline outline-1 outline-secondary dark:outline-tertiary"
+                            : "outline-none"
+                        }`}
                       >
-                        <span className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full left-0 bottom-0 transition-width duration-300 ease-in-out z-[-1] ${hovered? 'w-0': 'w-full'}`}></span>
+                        <span
+                          className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full left-0 bottom-0 transition-width duration-300 ease-in-out z-[-1] ${
+                            hovered ? "w-0" : "w-full"
+                          }`}
+                        ></span>
                         {send}
                       </button>
 
                       {/* SOCIAL MEDIA */}
-                      <div className='w-full flex justify-start mt-2'>
-
+                      <div className="w-full flex justify-start mt-2">
                         {/* LINKEDIN */}
-                        <a 
-                          href="https://www.linkedin.com/in/fran-galeano/" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href="https://www.linkedin.com/in/fran-galeano/"
+                          rel="noopener noreferrer"
                           target="_blank"
-                          className='mx-2' 
+                          className="mx-2"
                         >
-                            <i className="bi bi-linkedin text-xl dark:text-[#828282] text-[#828282]"></i>
+                          <i className="bi bi-linkedin text-xl dark:text-[#828282] text-[#828282]"></i>
                         </a>
-                       {/* INSTAGRAM */}
-                        <a 
-                          href="https://www.linkedin.com/in/fran-galeano/" 
-                          rel="noopener noreferrer" 
+                        {/* INSTAGRAM */}
+                        <a
+                          href="https://www.linkedin.com/in/fran-galeano/"
+                          rel="noopener noreferrer"
                           target="_blank"
-                          className='mx-2'
+                          className="mx-2"
                         >
                           <i className="bi bi-instagram text-xl dark:text-white"></i>
                         </a>
-                       {/* WHATSAPP */}
+                        {/* WHATSAPP */}
                         <WhatsappButton />
                         {/* GITHUB */}
-                        <a 
-                          href="https://github.com/fg-francogaleano" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href="https://github.com/fg-francogaleano"
+                          rel="noopener noreferrer"
                           target="_blank"
-                          className='mx-2'
+                          className="mx-2"
                         >
                           <i className="bi bi-github text-xl dark:text-white"></i>
                         </a>
-                        
                       </div>
-                    </Box> 
+                    </Box>
                   </div>
-                  
-                  <Stack spacing={2} sx={{ width: '100%' }}>
-                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                      <Alert onClose={handleClose} severity={success ? 'success': 'error'} sx={{ width: '100%' }}>
+
+                  <Stack spacing={2} sx={{ width: "100%" }}>
+                    <Snackbar
+                      open={open}
+                      autoHideDuration={6000}
+                      onClose={handleClose}
+                    >
+                      <Alert
+                        onClose={handleClose}
+                        severity={success ? "success" : "error"}
+                        sx={{ width: "100%" }}
+                      >
                         {success ? alertSuccess : alertError}
                       </Alert>
                     </Snackbar>
                   </Stack>
-                </div>
+                </motion.div>
               </>
             )}
           </Formik>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Contact
+export default Contact;
