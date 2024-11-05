@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser";
 import React, { useRef, useState } from "react";
 import WhatsappButton from "../WhatsappButton/WhatsappButton";
 import { motion } from "framer-motion";
+import Button from "../Button/Button";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -273,7 +274,7 @@ function Contact({ language }) {
                       >
                         {send}
                       </LoadingButton> */}
-                      <button
+                      {/* <button
                         type="submit"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
@@ -289,7 +290,8 @@ function Contact({ language }) {
                           }`}
                         ></span>
                         {send}
-                      </button>
+                      </button> */}
+                      <Button childen={send} type={"submit"} />
 
                       {/* SOCIAL MEDIA */}
                       <div className="w-full flex justify-start mt-2">
@@ -300,7 +302,7 @@ function Contact({ language }) {
                           target="_blank"
                           className="mx-2"
                         >
-                          <i className="bi bi-linkedin text-xl dark:text-[#828282] text-[#828282]"></i>
+                          <i className="bi bi-linkedin text-xl dark:text-[#828282]"></i>
                         </a>
                         {/* INSTAGRAM */}
                         <a
@@ -309,7 +311,7 @@ function Contact({ language }) {
                           target="_blank"
                           className="mx-2"
                         >
-                          <i className="bi bi-instagram text-xl dark:text-white"></i>
+                          <i className="bi bi-instagram text-xl dark:text-[#828282]"></i>
                         </a>
                         {/* WHATSAPP */}
                         <WhatsappButton />
@@ -320,7 +322,7 @@ function Contact({ language }) {
                           target="_blank"
                           className="mx-2"
                         >
-                          <i className="bi bi-github text-xl dark:text-white"></i>
+                          <i className="bi bi-github text-xl dark:text-[#828282]"></i>
                         </a>
                       </div>
                     </Box>

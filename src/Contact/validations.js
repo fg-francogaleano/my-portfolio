@@ -1,4 +1,4 @@
-const blankSpace = /^\s+$/; // Espacio en blanco
+const blankSpace = /\s/; // Espacio en blanco
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3}$/i; // Email válido
 const regexLetters = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/; // Solo letras
 

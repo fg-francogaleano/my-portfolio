@@ -15,7 +15,7 @@ function WhatsappButton() {
       target="_blank"
       className="mx-2"
     >
-      <i className="bi bi-whatsapp text-xl dark:text-white"></i>
+      <i className="bi bi-whatsapp text-xl dark:text-[#828282]"></i>
     </a>
   );
 }

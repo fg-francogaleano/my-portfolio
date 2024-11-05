@@ -52,16 +52,16 @@ function NavBar({
 
   /* BUTTON NAV */
   const navigationsEs = [
-    { name: "Inicio", position: 0 },
-    { name: "Acerca de mi", position: 962 },
-    { name: "Proyectos", position: 1924 },
-    { name: "Contáctame", position: 2886 },
+    { name: "Inicio", position: 0, icon: "bi-house" },
+    { name: "Acerca de mi", position: 962, icon: "bi-person" },
+    { name: "Proyectos", position: 1924, icon: "bi-file-earmark-text" },
+    { name: "Contáctame", position: 2886, icon: "bi-envelope" },
   ];
   const navigationsEn = [
-    { name: "Home", position: 0 },
-    { name: "About me", position: 962 },
-    { name: "Projects", position: 1924 },
-    { name: "Contact", position: 2886 },
+    { name: "Home", position: 0, icon: "bi-house" },
+    { name: "About me", position: 962, icon: "bi-person" },
+    { name: "Projects", position: 1924, icon: "bi-file-earmark-text" },
+    { name: "Contact", position: 2886, icon: "bi-envelope" },
   ];
   const navigations = language === "En" ? navigationsEn : navigationsEs;
   /* END BUTTON NAV */
@@ -206,11 +206,13 @@ function NavBar({
                       smooth={true}
                       offset={0}
                       duration={800}
+                      onClick={() => setIsOpen(false)}
                     >
+                      <i className={`bi ${navItem.icon} md:hidden`}></i>{" "}
                       {navItem.name}
                     </Link>
                   </li>
-                  <hr className="border-none outline outline-1 outline-[#C4C4C4] rounded-full dark:outline-grey md:hidden" />
+                  {/* <hr className="border-none outline outline-1 outline-[#C4C4C4] rounded-full dark:outline-grey md:hidden" /> */}
                 </>
               ))}
             </ul>

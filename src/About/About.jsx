@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 // import SliderSkrill from '../Slider/SliderSrill';
 import WhatsappButton from "../WhatsappButton/WhatsappButton";
 import { motion } from "framer-motion";
+import Button from "../Button/Button";
 
 function About({ language, scrollToSection }) {
   const contact = language === "Es" ? "Contáctame" : "Contact";
@@ -14,32 +15,36 @@ function About({ language, scrollToSection }) {
       ? "Me especializo en crear experiencias web digitales de alta calidad, enfocándome en contenido animado, responsivo e interactivo. Diseño y codifico elementos maravillosamente simples. Trabajo constantemente para mejorar mis habilidades, amo lo que hago."
       : "I specialize in creating high-quality digital web experiences, focusing on animated, responsive and interactive content. I design and code beautifully simple elements. I constantly work to improve my skills, I love what I do";
   /* HOVER BOTTON CONTACT */
-  const [hovered1, setHovered1] = useState(false);
+  // const [hovered1, setHovered1] = useState(true);
 
-  const handleMouseEnter1 = () => {
-    setHovered1(true);
-  };
+  // const handleMouseEnter1 = () => {
+  //   setHovered1(true);
+  // };
 
-  const handleMouseLeave1 = () => {
-    setHovered1(false);
-  };
+  // const handleMouseLeave1 = () => {
+  //   setHovered1(false);
+  // };
   /* END HOVER BOTTON DOWNLOAD */
 
   /* HOVER BOTTON DOWNLOAD */
-  const [hovered, setHovered] = useState(false);
+  // const [hovered, setHovered] = useState(false);
 
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
+  // const handleMouseEnter = () => {
+  //   setHovered(true);
+  // };
 
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
+  // const handleMouseLeave = () => {
+  //   setHovered(false);
+  // };
+
   // const variants = {
   //   visible: { opacity: 1, x: 0 },
   //   hidden: { opacity: 0, x: -50 },
   // }
   /* END HOVER BOTTON DOWNLOAD */
+  const handleToSection = () => {
+    scrollToSection(contact);
+  };
   return (
     <>
       <div className="w-full md:mt-1 self-center">
@@ -117,7 +122,7 @@ function About({ language, scrollToSection }) {
                   {text}
                 </motion.p>
 
-                {/* BOTTONS */}
+                {/* BOTTONS/ SOCIAL MEDIA */}
                 <div className="text-center mt-5 hidden md:block">
                   <div className="w-full flex gap-2">
                     {/* BOTTON CONTACT */}
@@ -132,27 +137,11 @@ function About({ language, scrollToSection }) {
                       }}
                       className="w-full"
                     >
-                      <button
-                        onMouseEnter={handleMouseEnter1}
-                        onMouseLeave={handleMouseLeave1}
-                        onClick={() => {
-                          setTimeout(() => {
-                            scrollToSection(contact);
-                          }, 100);
-                        }}
-                        className={`w-full bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${
-                          hovered1
-                            ? "outline outline-1 outline-secondary"
-                            : "outline-none"
-                        }`}
-                      >
-                        {contact}
-                        <span
-                          className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full right-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${
-                            hovered1 ? "w-0 " : "w-full"
-                          }`}
-                        ></span>
-                      </button>
+                      <Button
+                        childen={contact}
+                        type={"button"}
+                        funcion={handleToSection}
+                      />
                     </motion.div>
                     {/* BOTTON DOWNLOAD CV */}
                     <motion.div
@@ -167,19 +156,11 @@ function About({ language, scrollToSection }) {
                       className="w-full"
                     >
                       <a href="/Cv-Franco Galeano.pdf" download>
-                        <button
-                          onMouseEnter={handleMouseEnter}
-                          onMouseLeave={handleMouseLeave}
-                          className="relative w-full outline outline-1 outline-tertiary text-black px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white hover:w-full overflow-hidden"
-                        >
-                          <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i>{" "}
-                          {download}
-                          <span
-                            className={`bg-tertiary absolute h-full left-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${
-                              hovered ? "w-full" : "w-0"
-                            }`}
-                          ></span>
-                        </button>
+                        <Button
+                          secondary={true}
+                          childen={download}
+                          type={"button"}
+                        />
                       </a>
                     </motion.div>
                   </div>
@@ -194,7 +175,7 @@ function About({ language, scrollToSection }) {
                         transition={{ delay: 0.3, duration: 0.5 }}
                         variants={{
                           visible: { opacity: 1, x: 0 },
-                          hidden: { opacity: 0, x: -100 },
+                          hidden: { opacity: 0, x: -50 },
                         }}
                       >
                         <a
@@ -247,7 +228,7 @@ function About({ language, scrollToSection }) {
                         transition={{ delay: 0.3, duration: 0.5 }}
                         variants={{
                           visible: { opacity: 1, x: 0 },
-                          hidden: { opacity: 0, x: 100 },
+                          hidden: { opacity: 0, x: 50 },
                         }}
                       >
                         <a
@@ -265,7 +246,7 @@ function About({ language, scrollToSection }) {
               </div>
             </div>
           </div>
-          {/* CONTENT IMAGE */}
+          {/* CONTENT IMAGE/VERSION MOBILE */}
           <div className="md:self-center">
             <motion.div
               initial="hidden"
@@ -296,27 +277,11 @@ function About({ language, scrollToSection }) {
                       hidden: { opacity: 0, x: -50 },
                     }}
                   >
-                    <button
-                      onMouseEnter={handleMouseEnter1}
-                      onMouseLeave={handleMouseLeave1}
-                      onClick={() => {
-                        setTimeout(() => {
-                          scrollToSection(contact);
-                        }, 100);
-                      }}
-                      className={`w-full bg-transparent relative overflow-hidden my-1 px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${
-                        hovered1
-                          ? "outline outline-1 outline-secondary"
-                          : "outline-none"
-                      }`}
-                    >
-                      {contact}
-                      <span
-                        className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full right-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${
-                          hovered1 ? "w-0 " : "w-full"
-                        }`}
-                      ></span>
-                    </button>
+                    <Button
+                      scrollToSection={scrollToSection}
+                      childen={contact}
+                      type={"button"}
+                    />
                   </motion.div>
                   <motion.div
                     initial="hidden"
@@ -329,19 +294,11 @@ function About({ language, scrollToSection }) {
                     }}
                   >
                     <a href="/Cv-Franco Galeano.pdf" download>
-                      <button
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        className="relative w-full outline outline-1 outline-tertiary text-black my-1 px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl dark:text-white hover:w-full overflow-hidden"
-                      >
-                        <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i>{" "}
-                        {download}
-                        <span
-                          className={`bg-tertiary absolute h-full left-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${
-                            hovered ? "w-full" : "w-0"
-                          }`}
-                        ></span>
-                      </button>
+                      <Button
+                        secondary={true}
+                        childen={download}
+                        type={"button"}
+                      />
                     </a>
                   </motion.div>
                 </div>
