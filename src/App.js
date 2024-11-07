@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
-import TypingAnimation from "./TypingAnimation/TypingAnimation";
+// import TypingAnimation from "./TypingAnimation/TypingAnimation";
 import About from "./About/About";
 import Projects from "./Proyects/Projects";
 import Contact from "./Contact/Contact";
@@ -16,24 +16,76 @@ function App() {
   const [language, setlanguage] = useState(
     localStorage.getItem("language") || "Es"
   );
+  // useEffect(() => {
+  //   /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
+  //   if (localStorage.getItem("language") !== null) {
+  //     if (localStorage.getItem("language") === "Es") {
+  //       localStorage.setItem("language", "En");
+  //     } else {
+  //       localStorage.setItem("language", "Es");
+  //     }
+
+  //     /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
+  //   } else {
+  //     if (language === "Es") {
+  //       localStorage.setItem("language", "En");
+  //     } else {
+  //       localStorage.setItem("language", "Es");
+  //     }
+  //   }
+  // }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
+  /* END LANGUAGE */
+
+  /* THEME DARK */
+  const [themeDark, setThemeDark] = useState(
+    localStorage.getItem("color-theme") || "light"
+  );
+
   useEffect(() => {
     /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
-    if (localStorage.getItem("language") !== null) {
-      if (localStorage.getItem("language") === "Es") {
-        localStorage.setItem("language", "En");
+    if (localStorage.getItem("color-theme")) {
+      if (localStorage.getItem("color-theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
       } else {
-        localStorage.setItem("language", "Es");
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
       }
 
       /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
     } else {
-      if (language === "Es") {
-        localStorage.setItem("language", "En");
+      console.log("NO ESTÁ SETEADO EN LS", themeDark);
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
       } else {
-        localStorage.setItem("language", "Es");
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
       }
     }
-  }, [language]);
+  }, [themeDark]);
+
+  const toggleTheme = () => {
+    setThemeDark((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
+  const theme = createTheme({
+    palette: {
+      mode: themeDark,
+      primary: {
+        main: "#FB3088",
+        dark: "#FFFFFF",
+      },
+      secondary: {
+        main: "#083088",
+      },
+    },
+  });
+  /* END THEMEMODE MUI */
 
   /* SCROLL STYLES NAV */
   const initial = language === "Es" ? "Inicio" : "Home";
@@ -55,6 +107,7 @@ function App() {
     }
   };
   /* END SCROLL SECTION */
+
   const [isFirstSectionVisible, setIsFirstSectionVisible] = useState(false);
 
   useEffect(() => {
@@ -79,50 +132,6 @@ function App() {
     };
   }, [language, isFirstSectionVisible]);
 
-  /* THEMEMODE MUI */
-  const [themeMode, setThemeMode] = useState(
-    localStorage.getItem("color-themeMui") || "light"
-  );
-
-  useEffect(() => {
-    /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
-    if (localStorage.getItem("color-themeMui") !== null) {
-      console.log("entro en el 1");
-      if (localStorage.getItem("color-themeMui") === "light") {
-        localStorage.setItem("color-themeMui", "dark");
-      } else {
-        localStorage.setItem("color-themeMui", "light");
-      }
-
-      /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
-    } else {
-      console.log("entro en el 2");
-      if (themeMode === "light") {
-        localStorage.setItem("color-themeMui", "dark");
-      } else {
-        localStorage.setItem("color-themeMui", "light");
-      }
-    }
-  }, [themeMode]);
-
-  const toggleThemeMode = () => {
-    setThemeMode(themeMode === "dark" ? "light" : "dark");
-  };
-
-  const theme = createTheme({
-    palette: {
-      mode: themeMode,
-      primary: {
-        main: "#FB3088",
-        dark: "#FFFFFF",
-      },
-      secondary: {
-        main: "#083088",
-      },
-    },
-  });
-  /* END THEMEMODE MUI */
-
   return (
     <ThemeProvider theme={theme}>
       <div className="bg-white dark:bg-slate-800">
@@ -138,7 +147,8 @@ function App() {
               currentSection={currentSection}
               setCurrentSection={setCurrentSection}
               isFirstSectionVisible={isFirstSectionVisible}
-              toggleThemeMode={toggleThemeMode}
+              themeDark={themeDark}
+              toggleTheme={toggleTheme}
             />
           </div>
           <div className="flex justify-center items-center fixed w-full min-h-screen z-10">

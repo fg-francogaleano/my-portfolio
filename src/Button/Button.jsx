@@ -49,7 +49,7 @@ function Button({ childen, scrollToSection, secondary, type, funcion }) {
             }, 100);
           }}
         >
-          <i class="bi bi-download text-black dark:text-white hover:text-tertiary"></i>{" "}
+          <i className="bi bi-download text-black dark:text-white hover:text-tertiary"></i>{" "}
           {childen}
           <span
             className={`bg-tertiary absolute h-full left-0 bottom-0 transition-width duration-500 ease-in-out z-[-1] ${

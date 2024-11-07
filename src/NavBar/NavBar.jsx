@@ -10,7 +10,8 @@ function NavBar({
   currentSection,
   setCurrentSection,
   isFirstSectionVisible,
-  toggleThemeMode,
+  toggleTheme,
+  themeDark,
 }) {
   // console.log(toggleThemeMode);
   /* SCROLL STYLES NAV */
@@ -67,37 +68,37 @@ function NavBar({
   /* END BUTTON NAV */
 
   /* THEME DARK */
-  const [theme, setTheme] = useState(
-    localStorage.getItem("color-theme") || "light"
-  );
+  // const [theme, setTheme] = useState(
+  //   localStorage.getItem("color-theme") || "light"
+  // );
 
-  useEffect(() => {
-    /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
-    if (localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      }
+  // useEffect(() => {
+  //   /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
+  //   if (localStorage.getItem("color-theme")) {
+  //     if (localStorage.getItem("color-theme") === "light") {
+  //       document.documentElement.classList.add("dark");
+  //       localStorage.setItem("color-theme", "dark");
+  //     } else {
+  //       document.documentElement.classList.remove("dark");
+  //       localStorage.setItem("color-theme", "light");
+  //     }
 
-      /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
-    } else {
-      console.log("NO ESTÁ SETEADO EN LS", theme);
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      }
-    }
-  }, [theme]);
+  //     /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
+  //   } else {
+  //     console.log("NO ESTÁ SETEADO EN LS", theme);
+  //     if (document.documentElement.classList.contains("dark")) {
+  //       document.documentElement.classList.remove("dark");
+  //       localStorage.setItem("color-theme", "light");
+  //     } else {
+  //       document.documentElement.classList.add("dark");
+  //       localStorage.setItem("color-theme", "dark");
+  //     }
+  //   }
+  // }, [theme]);
 
-  const handlerTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  // const handlerTheme = () => {
+  //   setTheme(theme === "dark" ? "light" : "dark");
+  // };
   /* END THEME DARK */
 
   /* LANGUAGE */
@@ -177,7 +178,7 @@ function NavBar({
           }`}
         >
           {/* PROFILE */}
-          <div className="lg:flex gap-3 hidden lg:block">
+          <div className="lg:flex gap-3 hidden ">
             <div>
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgE3b96JxT73GWLaAWUAx4IwKFD8_tuH3dxw&usqp=CAU"
@@ -192,28 +193,25 @@ function NavBar({
             {/* NAVLINK */}
             <ul className="h-5/6 flex flex-col justify-around md:h-full md:w-full md:flex-row md:gap-6">
               {navigations?.map((navItem, index) => (
-                <>
-                  <li key={index} className="navlink">
-                    <Link
-                      className="pb-1"
-                      activeClass={`md:border-b md:border-secondary ${
-                        isFirstSectionVisible
-                          ? "text-black dark:text-white"
-                          : "text-black dark:text-white md:text-white"
-                      }`}
-                      to={navItem.name}
-                      spy={true}
-                      smooth={true}
-                      offset={0}
-                      duration={800}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <i className={`bi ${navItem.icon} md:hidden`}></i>{" "}
-                      {navItem.name}
-                    </Link>
-                  </li>
-                  {/* <hr className="border-none outline outline-1 outline-[#C4C4C4] rounded-full dark:outline-grey md:hidden" /> */}
-                </>
+                <li key={index} className="navlink">
+                  <Link
+                    className="pb-1"
+                    activeClass={`md:border-b md:border-secondary ${
+                      isFirstSectionVisible
+                        ? "text-black dark:text-white"
+                        : "text-black dark:text-white md:text-white"
+                    }`}
+                    to={navItem.name}
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={800}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <i className={`bi ${navItem.icon} md:hidden`}></i>{" "}
+                    {navItem.name}
+                  </Link>
+                </li>
               ))}
             </ul>
 
@@ -230,7 +228,7 @@ function NavBar({
             <ul className="h-8 flex justify-between md:h-auto md:gap-2">
               {/* THEME DARK */}
               <li className="flex">
-                {theme === "dark" ? (
+                {themeDark === "dark" ? (
                   <i className="bi bi-moon-stars font-normal"></i>
                 ) : (
                   <i className="bi bi-sun font-normal"></i>
@@ -238,14 +236,13 @@ function NavBar({
                 <button
                   onClick={() => {
                     setTimeout(() => {
-                      handlerTheme();
-                      toggleThemeMode();
+                      toggleTheme();
                     }, 500);
                     setIsOpen(false);
                   }}
                   className="px-1"
                 >
-                  {theme === "light" ? (
+                  {themeDark === "light" ? (
                     <i className="bi bi-toggle2-off px- text-[18px] font-normal"></i>
                   ) : (
                     <i className="bi bi-toggle2-on px- text-[18px] font-normal"></i>

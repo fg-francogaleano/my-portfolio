@@ -56,7 +56,7 @@ function Projects({ language }) {
         </motion.h2>
         <div className="">
           {projectsRender.map((project, index) => (
-            <>
+            <div key={index}>
               <div key={index} className={` md:w-full  my-6`}>
                 <div
                   className={`md:flex md:w-full md:h-full md:justify-evenly my-6 ${
@@ -183,7 +183,7 @@ function Projects({ language }) {
                     </motion.div>
                   )}
               </div>
-            </>
+            </div>
           ))}
         </div>
       </div>
