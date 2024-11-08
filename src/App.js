@@ -44,6 +44,7 @@ function App() {
   const [themeDark, setThemeDark] = useState(
     localStorage.getItem("color-theme") || "light"
   );
+  console.log(themeDark);
 
   useEffect(() => {
     /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
@@ -72,6 +73,7 @@ function App() {
   const toggleTheme = () => {
     setThemeDark((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
+  console.log(themeDark);
 
   const theme = createTheme({
     palette: {
