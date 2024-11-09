@@ -41,34 +41,58 @@ function App() {
   /* END LANGUAGE */
 
   /* THEME DARK */
+
   const [themeDark, setThemeDark] = useState(
     localStorage.getItem("color-theme") || "light"
   );
   console.log(themeDark);
 
   useEffect(() => {
-    /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
-    if (localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      }
+    console.log("Aplicando tema en el UseEffect");
 
-      /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
+    if (themeDark === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-      console.log("NO ESTÁ SETEADO EN LS", themeDark);
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      }
+      document.documentElement.classList.remove("dark");
     }
+
+    localStorage.setItem("color-theme", themeDark);
   }, [themeDark]);
+
+  // useEffect(() => {
+  //   console.log("ESTA EN EL UseEFFECT");
+
+  //   /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
+  //   if (localStorage.getItem("color-theme")) {
+  //     console.log("SI ESTÁ SETEADO EN LS", themeDark);
+  //     if (localStorage.getItem("color-theme") === "light") {
+  //       let aux = localStorage.getItem("color-theme");
+  //       console.log("EN EL if");
+
+  //       console.log(aux);
+
+  //       document.documentElement.classList.add("dark");
+  //       localStorage.setItem("color-theme", "dark");
+  //     } else {
+  //       console.log("EN EL else");
+  //       document.documentElement.classList.remove("dark");
+  //       localStorage.setItem("color-theme", "light");
+  //     }
+
+  //     /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
+  //   } else {
+  //     console.log("NO ESTÁ SETEADO EN LS", themeDark);
+  //     if (document.documentElement.classList.contains("dark")) {
+  //       console.log("EN EL if");
+  //       document.documentElement.classList.remove("dark");
+  //       localStorage.setItem("color-theme", "light");
+  //     } else {
+  //       console.log("EN EL else");
+  //       document.documentElement.classList.add("dark");
+  //       localStorage.setItem("color-theme", "dark");
+  //     }
+  //   }
+  // }, [themeDark]);
 
   const toggleTheme = () => {
     setThemeDark((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
