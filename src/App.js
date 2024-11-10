@@ -1,39 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import NavBar from "./NavBar/NavBar";
 // import TypingAnimation from "./TypingAnimation/TypingAnimation";
-import About from "./About/About";
-import Projects from "./Proyects/Projects";
-import Contact from "./Contact/Contact";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
-
-const UrlVideo =
-  "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4";
+import Main from "./Main/Main";
+import Header from "./Header/Header";
 
 function App() {
   /* LANGUAGE */
   const [language, setlanguage] = useState(
     localStorage.getItem("language") || "Es"
   );
-  // useEffect(() => {
-  //   /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
-  //   if (localStorage.getItem("language") !== null) {
-  //     if (localStorage.getItem("language") === "Es") {
-  //       localStorage.setItem("language", "En");
-  //     } else {
-  //       localStorage.setItem("language", "Es");
-  //     }
-
-  //     /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
-  //   } else {
-  //     if (language === "Es") {
-  //       localStorage.setItem("language", "En");
-  //     } else {
-  //       localStorage.setItem("language", "Es");
-  //     }
-  //   }
-  // }, [language]);
 
   useEffect(() => {
     localStorage.setItem("language", language);
@@ -41,15 +18,11 @@ function App() {
   /* END LANGUAGE */
 
   /* THEME DARK */
-
   const [themeDark, setThemeDark] = useState(
     localStorage.getItem("color-theme") || "light"
   );
-  console.log(themeDark);
 
   useEffect(() => {
-    console.log("Aplicando tema en el UseEffect");
-
     if (themeDark === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -59,45 +32,9 @@ function App() {
     localStorage.setItem("color-theme", themeDark);
   }, [themeDark]);
 
-  // useEffect(() => {
-  //   console.log("ESTA EN EL UseEFFECT");
-
-  //   /* SI ESTÁ SETEADO EN EL LOCALSTORANGE */
-  //   if (localStorage.getItem("color-theme")) {
-  //     console.log("SI ESTÁ SETEADO EN LS", themeDark);
-  //     if (localStorage.getItem("color-theme") === "light") {
-  //       let aux = localStorage.getItem("color-theme");
-  //       console.log("EN EL if");
-
-  //       console.log(aux);
-
-  //       document.documentElement.classList.add("dark");
-  //       localStorage.setItem("color-theme", "dark");
-  //     } else {
-  //       console.log("EN EL else");
-  //       document.documentElement.classList.remove("dark");
-  //       localStorage.setItem("color-theme", "light");
-  //     }
-
-  //     /* SI NO ESTÁ SETEADO EN EL LOCALSTORANGE */
-  //   } else {
-  //     console.log("NO ESTÁ SETEADO EN LS", themeDark);
-  //     if (document.documentElement.classList.contains("dark")) {
-  //       console.log("EN EL if");
-  //       document.documentElement.classList.remove("dark");
-  //       localStorage.setItem("color-theme", "light");
-  //     } else {
-  //       console.log("EN EL else");
-  //       document.documentElement.classList.add("dark");
-  //       localStorage.setItem("color-theme", "dark");
-  //     }
-  //   }
-  // }, [themeDark]);
-
   const toggleTheme = () => {
     setThemeDark((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
-  console.log(themeDark);
 
   const theme = createTheme({
     palette: {
@@ -111,7 +48,7 @@ function App() {
       },
     },
   });
-  /* END THEMEMODE MUI */
+  /* END DARK */
 
   /* SCROLL STYLES NAV */
   const initial = language === "Es" ? "Inicio" : "Home";
@@ -160,63 +97,23 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="bg-white dark:bg-slate-800">
-        <section
-          id={language === "En" ? "Home" : "Inicio"}
-          className="w-full min-h-screen relative"
-        >
-          <div className="fixed w-full z-[1001]">
-            <NavBar
-              language={language}
-              setlanguage={setlanguage}
-              scrollToSection={scrollToSection}
-              currentSection={currentSection}
-              setCurrentSection={setCurrentSection}
-              isFirstSectionVisible={isFirstSectionVisible}
-              themeDark={themeDark}
-              toggleTheme={toggleTheme}
-            />
-          </div>
-          <div className="flex justify-center items-center fixed w-full min-h-screen z-10">
-            {/* <div className="w-full border border-white flex justify-center">
-              <TypingAnimation language={language} style={{ width: "100%" }} />
-            </div> */}
-          </div>
-          <video
-            autoPlay
-            loop
-            muted
-            className="w-full h-full fixed top-0 left-0 object-cover"
-          >
-            <source src={UrlVideo} type="video/mp4" />
-          </video>
-          {/* <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div> */}
-          {/* <div className="w-full h-full flex justify-center items-end absolute bottom-0 left-0">
-            <AnimationDown />
-          </div> */}
-        </section>
-        <section
-          id={language === "En" ? "About me" : "Acerca de mi"}
-          className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border"
-        >
-          <About
-            language={language}
-            setlanguage={setlanguage}
-            scrollToSection={scrollToSection}
-          />
-        </section>
-        <section
-          id={language === "En" ? "Projects" : "Proyectos"}
-          className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border"
-        >
-          <Projects language={language} setlanguage={setlanguage} />
-        </section>
-        <section
-          id={language === "En" ? "Contact" : "Contáctame"}
-          className="w-full min-h-screen relative bg-white dark:bg-[#0F0F0F] z-[1000] p-6 flex items-center border"
-        >
-          <Contact language={language} />
-        </section>
+      <div className="bg-white dark:bg-slate-800 w-full overflow-x-hidden">
+        <Header
+          language={language}
+          setlanguage={setlanguage}
+          scrollToSection={scrollToSection}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          isFirstSectionVisible={isFirstSectionVisible}
+          themeDark={themeDark}
+          toggleTheme={toggleTheme}
+        />
+
+        <Main
+          language={language}
+          setlanguage={setlanguage}
+          scrollToSection={scrollToSection}
+        />
       </div>
     </ThemeProvider>
   );
