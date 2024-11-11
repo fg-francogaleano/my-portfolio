@@ -33,8 +33,8 @@ export default function validations(values) {
     errors.correo = "Ingrese un correo electrónico";
   }
   if (values.email && blankSpace.test(values.email)) {
-    errors.email = "It should not be a blank space";
-    errors.correo = "No debe ser un espacio en blanco";
+    errors.email = "Should not contain a blank space";
+    errors.correo = "No debe contener un espacio en blanco";
   }
   if (values.email && !regexEmail.test(values.email)) {
     errors.email = "It must be a valid email";
@@ -45,10 +45,6 @@ export default function validations(values) {
   if (!values.subject) {
     errors.subject = "Enter a subject";
     errors.asunto = "Ingrese un asunto";
-  }
-  if (values.subject && blankSpace.test(values.subject)) {
-    errors.subject = "Should not start with a space";
-    errors.asunto = "No debe empezar con un espacio";
   }
   if (values.subject && values.name.length > 30) {
     errors.subject = "Should not be more than 30 characters";
@@ -64,10 +60,7 @@ export default function validations(values) {
     errors.message = "Enter a message";
     errors.mensaje = "Ingrese un mensaje";
   }
-  if (values.message && blankSpace.test(values.message)) {
-    errors.message = "Should not start with a space";
-    errors.mensaje = "No debe empezar con un espacio";
-  }
+
   if (values.message && values.message.length > 51) {
     errors.message = "Should not be more than 50 characters";
     errors.mensaje = "No debe tener más de 50 carácteres";

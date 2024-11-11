@@ -119,7 +119,6 @@ function Contact({ language }) {
           className="font-condensed font-black tracking-widest visible md:text-5xl text-4xl dark:text-white text-center py-9"
         >
           {contact}
-          {/* <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span> */}
         </motion.h2>
         <div className="md:flex md:w-full md:h-full md:justify-evenly">
           {/* CONTENT TEXT */}
@@ -168,9 +167,9 @@ function Contact({ language }) {
                     visible: { opacity: 1, x: 0 },
                     hidden: { opacity: 0, x: 50 },
                   }}
-                  className="w-auto"
+                  className="w-auto rounded-lg outline outline-1 outline-tertiary p-5 shadow-2xl"
                 >
-                  <div className="rounded-lg outline outline-1 outline-tertiary  dark:outline dark:outline-1 dark:outline-tertiary w-full h-full m-auto max-w-[500px] md:min-w-[350px] md:h-auto md:max-w-[550px] flex-col p-5">
+                  <div className="dark:outline dark:outline-1 dark:outline-tertiary w-full h-full m-auto max-w-[500px] md:min-w-[300px] md:h-auto md:max-w-[400px] flex-col p-5 ">
                     <Box ref={refForm} component="form" onSubmit={handleSubmit}>
                       {/* NAME */}
                       <TextField
