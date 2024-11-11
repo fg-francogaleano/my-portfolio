@@ -267,7 +267,7 @@ function Contact({ language }) {
                           target="_blank"
                           className="mx-2"
                         >
-                          <i className="bi bi-linkedin text-xl dark:text-[#828282]"></i>
+                          <i className="bi bi-linkedin text-xl dark:text-white"></i>
                         </a>
                         {/* INSTAGRAM */}
                         <a
@@ -276,7 +276,7 @@ function Contact({ language }) {
                           target="_blank"
                           className="mx-2"
                         >
-                          <i className="bi bi-instagram text-xl dark:text-[#828282]"></i>
+                          <i className="bi bi-instagram text-xl dark:text-white"></i>
                         </a>
                         {/* WHATSAPP */}
                         <WhatsappButton />
@@ -287,7 +287,7 @@ function Contact({ language }) {
                           target="_blank"
                           className="mx-2"
                         >
-                          <i className="bi bi-github text-xl dark:text-[#828282]"></i>
+                          <i className="bi bi-github text-xl dark:text-white"></i>
                         </a>
                       </div>
                     </Box>

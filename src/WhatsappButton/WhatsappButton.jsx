@@ -2,7 +2,8 @@ import React from "react";
 
 function WhatsappButton() {
   const phoneNumber = "+5491154718471";
-  const message = "Hola, ¿cómo estás? lorena";
+  const message =
+    "¡Hola! He visitado tu portafolio y estoy interesado/a en tus servicios profesionales. Me gustaría hablar sobre cómo podríamos colaborar en mi proyecto. ¿Podrías compartirme más información sobre tus tarifas y disponibilidad? ¡Gracias!";
 
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
     message
@@ -15,7 +16,7 @@ function WhatsappButton() {
       target="_blank"
       className="mx-2"
     >
-      <i className="bi bi-whatsapp text-xl dark:text-[#828282]"></i>
+      <i className="bi bi-whatsapp text-xl dark:text-white"></i>
     </a>
   );
 }
