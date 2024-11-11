@@ -59,7 +59,6 @@ function App() {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      console.log(section);
       setTimeout(() => {
         section.scrollIntoView({
           behavior: "smooth",

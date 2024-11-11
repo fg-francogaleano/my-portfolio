@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Button({ childen, scrollToSection, secondary, type, funcion }) {
+function Button({ childen, secondary, type, onAction, styled }) {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -40,7 +40,7 @@ function Button({ childen, scrollToSection, secondary, type, funcion }) {
           type={type}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className={`w-full relative px-4 py-2 rounded-full overflow-hidden   font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out
+          className={`w-full relative ${styled} px-4 py-2 rounded-full overflow-hidden font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out
           outline outline-1 outline-tertiary ${isClicked ? "scale-75" : ""}`}
           onClick={() => {
             setIsClicked(true);
@@ -64,11 +64,11 @@ function Button({ childen, scrollToSection, secondary, type, funcion }) {
           onMouseLeave={handleMouseLeave}
           onClick={() => {
             handleClick();
-            if (funcion) {
-              funcion(childen);
+            if (onAction) {
+              onAction(childen);
             }
           }}
-          className={`w-full my-4 bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${
+          className={`w-full ${styled} bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${
             hovered ? "outline outline-1 outline-secondary" : "outline-none"
           } ${isClicked ? "scale-75" : ""}`}
         >

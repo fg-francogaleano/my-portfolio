@@ -135,12 +135,12 @@ function About({ language, scrollToSection }) {
                         visible: { opacity: 1, x: 0 },
                         hidden: { opacity: 0, x: -50 },
                       }}
-                      className="w-full"
+                      className="w-full my-4"
                     >
                       <Button
                         childen={contact}
                         type={"button"}
-                        funcion={handleToSection}
+                        onAction={handleToSection}
                       />
                     </motion.div>
                     {/* BOTTON DOWNLOAD CV */}
@@ -153,7 +153,7 @@ function About({ language, scrollToSection }) {
                         visible: { opacity: 1, x: 0 },
                         hidden: { opacity: 0, x: 50 },
                       }}
-                      className="w-full"
+                      className="w-full my-4"
                     >
                       <a href="/Cv-Franco Galeano.pdf" download>
                         <Button
@@ -267,7 +267,9 @@ function About({ language, scrollToSection }) {
               {/* BOTTON CONTACT */}
               <div className="max-w-[500px] m-auto flex">
                 <div className="w-full gap-1">
+                  {/* BOTTON CONTACT */}
                   <motion.div
+                    className="py-4"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
@@ -278,11 +280,12 @@ function About({ language, scrollToSection }) {
                     }}
                   >
                     <Button
-                      scrollToSection={scrollToSection}
+                      onAction={scrollToSection}
                       childen={contact}
                       type={"button"}
                     />
                   </motion.div>
+                  {/* BOTTON DOWNLOAND */}
                   <motion.div
                     initial="hidden"
                     whileInView="visible"
