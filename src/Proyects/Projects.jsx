@@ -49,10 +49,10 @@ function Projects({ language }) {
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: -50 },
           }}
-          className="font-condensed font-black tracking-widest py-9 text-center visible text-5xl dark:text-white"
+          className="font-condensed font-black tracking-widest py-9 text-center visible text-4xl md:text-5xl dark:text-white"
         >
           {title}
-          <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span>
+          {/* <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span> */}
         </motion.h2>
         <div className="">
           {projectsRender.map((project, index) => (

@@ -40,7 +40,7 @@ function Button({ childen, secondary, type, onAction, styled }) {
           type={type}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className={`w-full relative ${styled} px-4 py-2 rounded-full overflow-hidden font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out
+          className={`w-full relative ${styled} px-4 py-1 rounded-full overflow-hidden font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out
           outline outline-1 outline-tertiary ${isClicked ? "scale-75" : ""}`}
           onClick={() => {
             setIsClicked(true);
@@ -68,7 +68,7 @@ function Button({ childen, secondary, type, onAction, styled }) {
               onAction(childen);
             }
           }}
-          className={`w-full ${styled} bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${
+          className={`w-full ${styled} bg-transparent relative overflow-hidden px-4 py-1 rounded-full font-condensed font-black tracking-widest text-xl dark:text-white shadow-2xl transition duration-500 ease-in-out ${
             hovered ? "outline outline-1 outline-secondary" : "outline-none"
           } ${isClicked ? "scale-75" : ""}`}
         >

@@ -57,13 +57,13 @@ function About({ language, scrollToSection }) {
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: -50 },
           }}
-          className="font-condensed font-black tracking-widest visible text-5xl dark:text-white text-center py-9"
+          className="font-condensed font-black tracking-widest visible md:text-5xl text-4xl dark:text-white text-center py-9"
         >
           {title}
-          <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span>
+          {/* <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span> */}
         </motion.h2>
         <div className="md:flex md:w-full md:h-full md:justify-evenly">
-          {/* CONTENT TEXT/BOTTONS */}
+          {/* VERSION DESKTOP */}
           <div className="">
             <div className="w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center">
               <div>
@@ -77,7 +77,7 @@ function About({ language, scrollToSection }) {
                     visible: { opacity: 1, y: 0 },
                     hidden: { opacity: 0, y: -50 },
                   }}
-                  className="font-condensed tracking-widest sm:text-6xl text-4xl font-black dark:text-white"
+                  className="font-condensed tracking-widest sm:text-5xl text-3xl font-black dark:text-white"
                 >
                   {text1}
                 </motion.h3>
@@ -123,7 +123,7 @@ function About({ language, scrollToSection }) {
                 </motion.p>
 
                 {/* BOTTONS/ SOCIAL MEDIA */}
-                <div className="text-center mt-5 hidden md:block">
+                <div className="text-center mt-1 hidden md:block">
                   <div className="w-full flex gap-2">
                     {/* BOTTON CONTACT */}
                     <motion.div
@@ -135,7 +135,7 @@ function About({ language, scrollToSection }) {
                         visible: { opacity: 1, x: 0 },
                         hidden: { opacity: 0, x: -50 },
                       }}
-                      className="w-full my-4"
+                      className="w-full"
                     >
                       <Button
                         childen={contact}
@@ -153,7 +153,7 @@ function About({ language, scrollToSection }) {
                         visible: { opacity: 1, x: 0 },
                         hidden: { opacity: 0, x: 50 },
                       }}
-                      className="w-full my-4"
+                      className="w-full "
                     >
                       <a href="/Cv-Franco Galeano.pdf" download>
                         <Button
@@ -246,6 +246,7 @@ function About({ language, scrollToSection }) {
               </div>
             </div>
           </div>
+
           {/* CONTENT IMAGE/VERSION MOBILE */}
           <div className="md:self-center">
             <motion.div

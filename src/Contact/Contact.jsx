@@ -101,15 +101,7 @@ function Contact({ language }) {
   /* END LOADING */
 
   /* BOTTON SEND */
-  const [hovered, setHovered] = useState(false);
 
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
   /* END BOTTON SEND */
 
   return (
@@ -124,10 +116,10 @@ function Contact({ language }) {
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: -50 },
           }}
-          className="font-condensed font-black tracking-widest visible text-5xl dark:text-white text-center py-9"
+          className="font-condensed font-black tracking-widest visible md:text-5xl text-4xl dark:text-white text-center py-9"
         >
           {contact}
-          <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span>
+          {/* <span className="w-14 h-[2px] bg-tertiary m-auto block rounded-full"></span> */}
         </motion.h2>
         <div className="md:flex md:w-full md:h-full md:justify-evenly">
           {/* CONTENT TEXT */}
@@ -262,36 +254,9 @@ function Contact({ language }) {
                         fullWidth
                         margin="normal"
                       />
-
-                      {/* SUBMIT */}
-                      {/* <LoadingButton 
-                        type='submit'
-                        variant="outlined"
-                        loading={loading}
-                        onClick={() => handleLoading(touched)}
-                        fullWidth
-                        style={{ marginTop: '20px' }}
-                      >
-                        {send}
-                      </LoadingButton> */}
-                      {/* <button
-                        type="submit"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        className={`w-full my-4 bg-transparent relative overflow-hidden px-4 py-2 rounded-full font-condensed font-black tracking-widest text-xl shadow-2xl text-black dark:text-white transition duration-1000 ease-in-out ${
-                          hovered
-                            ? "outline outline-1 outline-secondary dark:outline-tertiary"
-                            : "outline-none"
-                        }`}
-                      >
-                        <span
-                          className={`bg-gradient-to-r from-primary via-secondary to-tertiary absolute h-full left-0 bottom-0 transition-width duration-300 ease-in-out z-[-1] ${
-                            hovered ? "w-0" : "w-full"
-                          }`}
-                        ></span>
-                        {send}
-                      </button> */}
-                      <Button childen={send} type={"submit"} />
+                      <div className="mt-4">
+                        <Button childen={send} type={"submit"} />
+                      </div>
 
                       {/* SOCIAL MEDIA */}
                       <div className="w-full flex justify-start mt-2">
