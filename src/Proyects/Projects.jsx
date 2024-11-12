@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { projects } from "./data.js";
 import { motion } from "framer-motion";
+import { Divider } from "@mui/material";
 
 function Projects({ language }) {
   const title = language === "Es" ? "Proyectos" : "Projects";
@@ -129,7 +130,7 @@ function Projects({ language }) {
 
                 {index < projectsRender.length - 1 && (
                   <div className="w-[75%] m-auto">
-                    <hr className="border border-[#C4C4C4] dark:border-grey rounded-full" />
+                    <Divider />
                   </div>
                 )}
               </div>
