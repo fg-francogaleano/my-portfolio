@@ -133,8 +133,8 @@ function Contact({ language }) {
             }}
             className="hidden md:block"
           >
-            <div className="w-full md:h-full m-auto max-w-[550px] my-3 md:flex md:items-center">
-              <p className="font-condensed font-black tracking-widest xl:text-8xl sm:text-6xl l bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2">
+            <div className="w-full md:h-full m-auto max-w-[550px] md:flex md:items-center flex-1">
+              <p className="font-condensed font-black tracking-widest xl:text-7xl sm:text-5xl l bg-gradient-to-r from-primary via-secondary to-tertiary text-transparent bg-clip-text text-center py-2">
                 {text}
               </p>
             </div>
@@ -157,7 +157,7 @@ function Contact({ language }) {
               handleChange,
               handleBlur,
             }) => (
-              <>
+              <div className="w-full flex justify-center flex-1">
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -167,9 +167,9 @@ function Contact({ language }) {
                     visible: { opacity: 1, x: 0 },
                     hidden: { opacity: 0, x: 50 },
                   }}
-                  className="w-auto rounded-lg outline outline-1 outline-tertiary p-5 shadow-2xl"
+                  className="m-auto rounded-lg outline outline-1 outline-tertiary p-5 shadow-2xl"
                 >
-                  <div className="dark:outline dark:outline-1 dark:outline-tertiary w-full h-full m-auto max-w-[500px] md:min-w-[300px] md:h-auto md:max-w-[400px] flex-col p-5 ">
+                  <div className="h-full m-auto max-w-[350px] md:min-w-[300px] md:h-auto md:max-w-[380px] flex-col p-5 ">
                     <Box ref={refForm} component="form" onSubmit={handleSubmit}>
                       {/* NAME */}
                       <TextField
@@ -308,7 +308,7 @@ function Contact({ language }) {
                     </Snackbar>
                   </Stack>
                 </motion.div>
-              </>
+              </div>
             )}
           </Formik>
         </div>
