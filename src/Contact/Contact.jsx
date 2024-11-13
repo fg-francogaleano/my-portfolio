@@ -116,7 +116,7 @@ function Contact({ language }) {
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: -50 },
           }}
-          className="font-condensed font-black tracking-widest visible md:text-5xl text-4xl dark:text-white text-center py-9"
+          className="font-condensed font-semibold tracking-wide visible md:text-5xl text-4xl dark:text-white text-center py-9"
         >
           {contact}
         </motion.h2>

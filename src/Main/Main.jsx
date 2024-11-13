@@ -2,6 +2,8 @@ import React from "react";
 import About from "../About/About";
 import Projects from "../Proyects/Projects";
 import Contact from "../Contact/Contact";
+import TypingAnimation from "../TypingAnimation/TypingAnimation";
+import AnimationDown from "../AnimationDown/AnimationDown";
 
 const UrlVideo =
   "https://res.cloudinary.com/dfmkjxjsf/video/upload/v1692577789/varietales/pexels-pavel-danilyuk-5495845_1080p_f4ascs.mp4";
@@ -13,23 +15,26 @@ function Main({ language, setlanguage, scrollToSection }) {
         id={language === "En" ? "Home" : "Inicio"}
         className="w-full min-h-screen relative"
       >
-        {/* <div className="flex justify-center items-center fixed w-full min-h-screen z-10"> */}
-        {/* <div className="w-full border border-white flex justify-center">
-        <TypingAnimation language={language} style={{ width: "100%" }} />
-      </div> */}
-        {/* </div> */}
+        <div className="w-full h-full fixed top-0 left-0 bg-black opacity-50 z-10"></div>
+
+        <div className="flex justify-center items-center fixed w-full min-h-screen z-10">
+          <div className="w-full flex justify-start">
+            <TypingAnimation language={language} style={{ width: "100%" }} />
+          </div>
+        </div>
+
         <video
           autoPlay
           loop
           muted
-          className="w-full h-full fixed top-0 left-0 object-cover"
+          className="w-full h-full fixed top-0 left-0 object-cover z-0"
         >
           <source src={UrlVideo} type="video/mp4" />
         </video>
-        {/* <div className='w-full h-[100%] absolute bottom-0 left-0 bg-gradient-to-t from-white from-5% to-50% dark:from-slate-800' style={{ filter: 'grayscale(10%)' }}></div> */}
-        {/* <div className="w-full h-full flex justify-center items-end absolute bottom-0 left-0">
-      <AnimationDown />
-    </div> */}
+
+        <div className="w-full h-full flex justify-center items-end fixed bottom-0 left-0">
+          <AnimationDown />
+        </div>
       </section>
       <section
         id={language === "En" ? "About me" : "Acerca de mi"}

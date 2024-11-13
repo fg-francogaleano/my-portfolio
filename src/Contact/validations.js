@@ -10,10 +10,6 @@ export default function validations(values) {
     errors.name = "Enter a name";
     errors.nombre = "Ingrese un nombre";
   }
-  if (values.name && blankSpace.test(values.name)) {
-    errors.name = "Should not start with a space";
-    errors.nombre = "No debe empezar con un espacio";
-  }
   if (values.name && values.name.length > 30) {
     errors.name = "Should not be more than 30 characters";
     errors.nombre = "No debe tener más de 30 carácteres";
