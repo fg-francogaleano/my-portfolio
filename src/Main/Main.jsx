@@ -18,7 +18,7 @@ function Main({ language, setlanguage, scrollToSection }) {
         <div className="w-full h-full fixed top-0 left-0 bg-black opacity-50 z-10"></div>
 
         <div className="flex justify-center items-center fixed w-full min-h-screen z-10">
-          <div className="w-full flex justify-start">
+          <div className="w-full flex justify-center">
             <TypingAnimation language={language} style={{ width: "100%" }} />
           </div>
         </div>
